@@ -38,7 +38,6 @@
                 "@typescript-eslint/indent": ["error", 4],
                 "import/prefer-default-export": "off",
                 "no-console": "off",
-                "max-len": ["error", 100],
                 "import/newline-after-import": "error",
                 "import/first": "error",
                 "import/no-duplicates": "error",
