@@ -1,0 +1,115 @@
+.header {
+    background-color: var(--background);
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: max-content;
+        align-self: center;
+
+        &-search {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-sort {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            span {
+                color: rgba(128, 128, 128, 0.651);
+            }
+        }
+    }
+}
+
+.search {
+    display: flex;
+    font-size: 18px;
+    &__input {
+        color: black;
+        width: 450px;
+        border: none;
+        padding: 0.2rem;
+        background-color: #efefef;
+        &-button {
+            padding: 0.2rem 2rem;
+            background-color: var(--primary);
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            box-shadow: var(--primary) 2px -2px 10px;
+        }
+    }
+}
+
+.sort {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    align-items: center;
+    font-weight: 500;
+
+    a {
+        color: rgb(0, 153, 255);
+    }
+    &__input {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        a {
+            text-decoration: none;
+        }
+        input {
+            border: none;
+            height: 20px;
+            width: 170px;
+        }
+    }
+}
+
+.account {
+    display: flex;
+    gap: 10px;
+    padding-top: 1rem;
+    align-items: center;
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        color: white;
+        background-color: var(--primary);
+        border-radius: 5px;
+    }
+}
+
+.settings {
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background-color: var(--primary);
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: var(--primary) 2px -2px 10px;
+        mat-icon {
+            display: flex;
+        }
+    }
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr auto;
+    justify-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}

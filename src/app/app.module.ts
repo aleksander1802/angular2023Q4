@@ -8,6 +8,7 @@ import { SearchItemComponent } from './components/search/search-item/search-item
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { MaterialModule } from './shared/modules/material/material.module';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
         CustomButtonComponent,
         HomePageComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule],
+    imports: [BrowserModule, AppRoutingModule, MaterialModule],
     providers: [],
     bootstrap: [AppComponent],
 })

@@ -1,1 +1,46 @@
-<p>header works!</p>
+<header class="header">
+    <div class="container">
+        <div class="header__container">
+            <div class="header__container-search">
+                <div class="logo" routerLink="/">
+                    <img
+                        src="../../../assets/images/youtube.svg"
+                        alt="youtube logo"
+                    />
+                </div>
+
+                <div class="search">
+                    <input class="search__input" placeholder="Search" />
+                    <app-custom-button class="search__input-button">
+                        search
+                    </app-custom-button>
+                </div>
+
+                <app-custom-button class="settings__button">
+                    <mat-icon> tune </mat-icon>
+                </app-custom-button>
+            </div>
+
+            <div class="header__container-sort">
+                <span>Sorting by:</span>
+                <div class="sort">
+                    <a href="#">date</a>
+                    <a href="#">count of views</a>
+                    <div class="sort__input">
+                        <a href="#">by word or sentance</a>
+                        <input type="text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header__container-account">
+            <div class="account">
+                <span>Darrel Reiss</span>
+                <div class="account__icon">
+                    <mat-icon>account_circle</mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
