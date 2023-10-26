@@ -16,12 +16,15 @@
                     </app-custom-button>
                 </div>
 
-                <app-custom-button class="settings__button">
+                <app-custom-button
+                    class="settings__button"
+                    (click)="isSortSettingsVisible = !isSortSettingsVisible"
+                >
                     <mat-icon> tune </mat-icon>
                 </app-custom-button>
             </div>
 
-            <div class="header__container-sort">
+            <div *ngIf="isSortSettingsVisible" class="header__container-sort">
                 <span>Sorting by:</span>
                 <div class="sort">
                     <a href="#">date</a>
