@@ -1,1 +1,14 @@
-<p>search-item works!</p>
+<div class="item">
+    <div class="item__image">
+        <img
+            [src]="item.snippet.thumbnails.medium.url"
+            [alt]="item.snippet.title"
+        />
+    </div>
+
+    <app-metrics [item]="item"></app-metrics>
+
+    <div class="item__title">{{ item.snippet.title }}</div>
+
+    <app-custom-button class="item__button"> more... </app-custom-button>
+</div>

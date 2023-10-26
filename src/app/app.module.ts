@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './shared/components/main-layout/main-layout
 import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MaterialModule } from './shared/modules/material/material.module';
+import { MetricsComponent } from './components/metrics/metrics.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { MaterialModule } from './shared/modules/material/material.module';
         MainLayoutComponent,
         CustomButtonComponent,
         HomePageComponent,
+        MetricsComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, MaterialModule],
     providers: [],

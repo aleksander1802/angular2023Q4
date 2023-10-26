@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -20,13 +19,15 @@ $youtube-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$youtube-theme: mat.define-light-theme((
-  color: (
-    primary: $youtube-primary,
-    accent: $youtube-accent,
-    warn: $youtube-warn,
-  )
-));
+$youtube-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $youtube-primary,
+            accent: $youtube-accent,
+            warn: $youtube-warn,
+        ),
+    )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -45,9 +46,9 @@ $youtube-theme: mat.define-light-theme((
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: auto;
-    overflow: hidden;    
+    
 }
 
 .logo {
@@ -55,5 +56,15 @@ $youtube-theme: mat.define-light-theme((
     display: flex;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
