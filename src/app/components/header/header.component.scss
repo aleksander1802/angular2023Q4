@@ -46,14 +46,6 @@
         &:focus {
             outline-color: var(--primary);
         }
-        &-button {
-            padding: 0.2rem 2rem;
-            background-color: var(--primary);
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-            box-shadow: var(--primary) 2px -2px 10px;
-            cursor: pointer;
-        }
     }
 }
 
@@ -98,22 +90,5 @@
         color: white;
         background-color: var(--primary);
         border-radius: 5px;
-    }
-}
-
-.settings {
-    &__button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 30px;
-        background-color: var(--primary);
-        border-radius: 5px;
-        cursor: pointer;
-        box-shadow: var(--primary) 2px -2px 10px;
-        mat-icon {
-            display: flex;
-        }
     }
 }

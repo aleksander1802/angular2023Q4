@@ -3,8 +3,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    min-height: 450px;  
-    border-radius: 10px;  
+    min-height: 450px;
+    border-radius: 10px;
     background-color: var(--background);
     padding: 1.5rem;
     cursor: default;
@@ -29,13 +29,5 @@
         font-size: 1.25rem;
         font-weight: 600;
         padding-left: 4rem;
-    }
-
-    &__button {
-        padding: 0.4rem 3rem;
-        background-color: var(--primary);
-        border-radius: 5px;
-        box-shadow: var(--primary) 2px -2px 10px;
-        cursor: pointer;
     }
 }

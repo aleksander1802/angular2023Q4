@@ -9,23 +9,24 @@
                     />
                 </div>
 
-                <div class="search">
+                <form class="search" (ngSubmit)="search(searchQuery)">
                     <input
                         class="search__input"
                         placeholder="Search"
                         [(ngModel)]="searchQuery"
+                        name="searchQuery"
                         (keyup)="onEnterKey($event)"
                     />
                     <app-custom-button
-                        class="search__input-button"
-                        (click)="search(searchQuery)"
+                        additionalClasses="search__input-button"
+                        type="submit"
                     >
                         search
                     </app-custom-button>
-                </div>
+                </form>
 
                 <app-custom-button
-                    class="settings__button"
+                    additionalClasses="settings__button"
                     (click)="isSortSettingsVisible = !isSortSettingsVisible"
                 >
                     <mat-icon> tune </mat-icon>
