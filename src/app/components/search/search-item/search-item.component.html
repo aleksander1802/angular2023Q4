@@ -1,4 +1,4 @@
-<div class="item">
+<div class="item" [appColorByDate]="item.snippet.publishedAt">
     <div class="item__image">
         <img
             [src]="item.snippet.thumbnails.medium.url"

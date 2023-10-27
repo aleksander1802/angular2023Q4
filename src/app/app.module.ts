@@ -11,6 +11,7 @@ import { CustomButtonComponent } from './shared/components/custom-button/custom-
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { MetricsComponent } from './components/metrics/metrics.component';
+import { ColorByDateDirective } from './shared/directives/color-by-date.directive';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { MetricsComponent } from './components/metrics/metrics.component';
         CustomButtonComponent,
         HomePageComponent,
         MetricsComponent,
+        ColorByDateDirective,
     ],
     imports: [BrowserModule, AppRoutingModule, MaterialModule, FormsModule],
     providers: [],
