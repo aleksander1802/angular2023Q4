@@ -33,17 +33,9 @@
                 </app-custom-button>
             </div>
 
-            <div *ngIf="isSortSettingsVisible" class="header__container-sort">
-                <span>Sorting by:</span>
-                <div class="sort">
-                    <a href="#">date</a>
-                    <a href="#">count of views</a>
-                    <div class="sort__input">
-                        <a href="#">by word or sentance</a>
-                        <input type="text" />
-                    </div>
-                </div>
-            </div>
+            <app-filtering-criteria-block
+                *ngIf="isSortSettingsVisible"
+            ></app-filtering-criteria-block>
         </div>
 
         <div class="header__container-account">

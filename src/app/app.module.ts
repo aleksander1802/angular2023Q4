@@ -12,6 +12,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { ColorByDateDirective } from './shared/directives/color-by-date.directive';
+import { FilteringCriteriaBlockComponent } from './components/filtering-criteria-block/filtering-criteria-block.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { ColorByDateDirective } from './shared/directives/color-by-date.directiv
         HomePageComponent,
         MetricsComponent,
         ColorByDateDirective,
+        FilteringCriteriaBlockComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, MaterialModule, FormsModule],
     providers: [],

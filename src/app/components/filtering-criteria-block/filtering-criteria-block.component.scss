@@ -1,0 +1,44 @@
+.header {
+    &__container {
+        &-sort {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            padding-top: 1rem;
+            span {
+                color: rgba(128, 128, 128, 0.651);
+            }
+        }
+    }
+}
+
+.sort {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+    align-items: center;
+    font-weight: 500;
+    a {
+        color: rgb(0, 153, 255);
+        &:hover {
+            color: var(--background-primary);
+        }
+    }
+    &__input {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        a {
+            text-decoration: none;
+        }
+        input {
+            border: none;
+            height: 20px;
+            &:focus {
+                outline-color: var(--primary);
+            }
+        }
+    }
+}
