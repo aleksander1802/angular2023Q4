@@ -1,10 +1,28 @@
 <div class="header__container-sort">
     <span>Sorting by:</span>
     <div class="sort">
-        <a href="#" (click)="sortService.sortByDate($event)">date</a>
-        <a href="#" (click)="sortService.sortByViews($event)">count of views</a>
+        <a
+            href="#"
+            (click)="sortService.sortByDate($event); setActiveSorting('date')"
+            [ngClass]="getLinkClass('date')"
+        >
+            date
+        </a>
+        <a
+            href="#"
+            (click)="sortService.sortByViews($event); setActiveSorting('views')"
+            [ngClass]="getLinkClass('views')"
+        >
+            count of views
+        </a>
         <div class="sort__input">
-            <a href="#">by word or sentance</a>
+            <a
+                href="#"
+                (click)="setActiveSorting('word')"
+                [ngClass]="getLinkClass('word')"
+            >
+                by word or sentence
+            </a>
             <input type="text" />
         </div>
     </div>

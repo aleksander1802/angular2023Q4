@@ -25,6 +25,9 @@
         &:hover {
             color: var(--background-primary);
         }
+        &.active {
+            color: crimson;
+        }
     }
     &__input {
         display: flex;
