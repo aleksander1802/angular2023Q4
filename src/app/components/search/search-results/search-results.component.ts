@@ -13,6 +13,8 @@ export class SearchResultsComponent implements OnInit {
     constructor(private resultsService: ResultsService) {}
 
     ngOnInit() {
-        this.responseItems = this.resultsService.getMockItems();
+        this.resultsService.searchResults.subscribe((items) => {
+            this.responseItems = items;
+        });
     }
 }

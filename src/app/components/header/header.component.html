@@ -10,8 +10,16 @@
                 </div>
 
                 <div class="search">
-                    <input class="search__input" placeholder="Search" />
-                    <app-custom-button class="search__input-button">
+                    <input
+                        class="search__input"
+                        placeholder="Search"
+                        [(ngModel)]="searchQuery"
+                        (keyup)="onEnterKey($event)"
+                    />
+                    <app-custom-button
+                        class="search__input-button"
+                        (click)="search(searchQuery)"
+                    >
                         search
                     </app-custom-button>
                 </div>
@@ -39,7 +47,7 @@
 
         <div class="header__container-account">
             <div class="account">
-                <span>Darrel Reiss</span>
+                <span> Your Name </span>
                 <div class="account__icon">
                     <mat-icon>account_circle</mat-icon>
                 </div>

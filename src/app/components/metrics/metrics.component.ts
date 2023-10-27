@@ -31,7 +31,7 @@ export class MetricsComponent implements OnInit {
                     count: this.item.statistics.dislikeCount,
                 },
                 {
-                    icon: 'question_answer',
+                    icon: 'comment',
                     count: this.item.statistics.commentCount,
                 },
             ];
