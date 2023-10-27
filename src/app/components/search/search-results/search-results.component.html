@@ -1,5 +1,9 @@
 <app-search-item
     class="items"
-    *ngFor="let item of responseItems"
+    *ngFor="
+        let item of responseItems
+            | sorting : sortService.sortBy : sortService.sortOrder;
+        trackBy: trackByFn
+    "
     [item]="item"
 ></app-search-item>

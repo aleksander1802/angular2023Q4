@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ResultsService } from 'src/app/services/results.service';
+import { ResultsService } from 'src/app/services/results/results.service';
 
 @Component({
     selector: 'app-home-page',

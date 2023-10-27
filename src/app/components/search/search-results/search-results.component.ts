@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item.model';
-import { ResultsService } from 'src/app/services/results.service';
+import { ResultsService } from 'src/app/services/results/results.service';
+import { SortService } from 'src/app/services/sort/sort.service';
 
 @Component({
     selector: 'app-search-results',
@@ -10,11 +11,18 @@ import { ResultsService } from 'src/app/services/results.service';
 export class SearchResultsComponent implements OnInit {
     responseItems: SearchItem[] = [];
 
-    constructor(private resultsService: ResultsService) {}
+    constructor(
+        private resultsService: ResultsService,
+        public sortService: SortService
+    ) {}
 
     ngOnInit() {
         this.resultsService.searchResults.subscribe((items) => {
             this.responseItems = items;
         });
+    }
+
+    trackByFn(_index: number, responseItems: SearchItem) {
+        return responseItems.id;
     }
 }

@@ -1,8 +1,8 @@
 <div class="header__container-sort">
     <span>Sorting by:</span>
     <div class="sort">
-        <a href="#">date</a>
-        <a href="#">count of views</a>
+        <a href="#" (click)="sortService.sortByDate($event)">date</a>
+        <a href="#" (click)="sortService.sortByViews($event)">count of views</a>
         <div class="sort__input">
             <a href="#">by word or sentance</a>
             <input type="text" />
