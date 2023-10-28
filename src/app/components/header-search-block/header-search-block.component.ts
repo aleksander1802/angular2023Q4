@@ -14,14 +14,14 @@ export class HeaderSearchBlockComponent {
     search(value: string) {
         this.resultsService.isResultsVisible = true;
 
-        this.resultsService.getSearchResults(value.trim());
+        this.resultsService.getSearchResults(value.toLowerCase().trim());
     }
 
     onEnterKey(event: KeyboardEvent) {
         if (event.key === 'Enter') {
             const { value } = event.target as HTMLInputElement;
 
-            this.search(value);
+            this.search(value.toLowerCase().trim());
         }
     }
 }
