@@ -26,4 +26,8 @@ export class SortService {
         this.sortBy = 'views';
         this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
     }
+
+    getCurrentSortOrder(): SortOrder {
+        return this.sortOrder;
+    }
 }

@@ -21,6 +21,8 @@
     align-items: center;
     font-weight: 500;
     a {
+        display: flex;
+        align-items: center;
         color: rgb(0, 153, 255);
         &:hover {
             color: var(--background-primary);

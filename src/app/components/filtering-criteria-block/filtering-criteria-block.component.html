@@ -7,6 +7,9 @@
             [ngClass]="getLinkClass('date')"
         >
             date
+            <mat-icon *ngIf="sortService.sortBy === 'date'">
+                {{ sortService.sortOrder === 'asc' ? 'arrow_upward' : 'arrow_downward' }}
+            </mat-icon>
         </a>
         <a
             href="#"
@@ -14,6 +17,9 @@
             [ngClass]="getLinkClass('views')"
         >
             count of views
+            <mat-icon *ngIf="sortService.sortBy === 'views'">
+                {{ sortService.sortOrder === 'asc' ? 'arrow_upward' : 'arrow_downward' }}
+            </mat-icon>
         </a>
         <div class="sort__input">
             <span> by word or sentence </span>
