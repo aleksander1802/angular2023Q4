@@ -2,13 +2,9 @@
     <div class="container">
         <div class="header__container">
             <div class="header__container-search">
-                <div class="logo" routerLink="/">
-                    <img
-                        src="../../../assets/images/youtube.svg"
-                        alt="youtube logo"
-                    />
-                </div>
-
+                
+                <app-logo></app-logo>
+                
                 <form class="search" (ngSubmit)="search(searchQuery)">
                     <input
                         class="search__input"

@@ -15,6 +15,7 @@ import { ColorByDateDirective } from './shared/directives/color-by-date.directiv
 import { FilteringCriteriaBlockComponent } from './components/filtering-criteria-block/filtering-criteria-block.component';
 import { SortingPipe } from './shared/pipes/sorting/sorting.pipe';
 import { FilteringPipe } from './shared/pipes/filtering/filtering.pipe';
+import { LogoComponent } from './shared/components/logo/logo.component';
 
 @NgModule({
     declarations: [
@@ -31,8 +32,14 @@ import { FilteringPipe } from './shared/pipes/filtering/filtering.pipe';
         SortingPipe,
         FilteringPipe,
     ],
-    imports: [BrowserModule, AppRoutingModule, MaterialModule, FormsModule],
     providers: [],
     bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MaterialModule,
+        FormsModule,
+        LogoComponent,
+    ],
 })
 export class AppModule {}
