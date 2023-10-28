@@ -16,6 +16,7 @@ import { FilteringCriteriaBlockComponent } from './components/filtering-criteria
 import { SortingPipe } from './shared/pipes/sorting/sorting.pipe';
 import { FilteringPipe } from './shared/pipes/filtering/filtering.pipe';
 import { LogoComponent } from './shared/components/logo/logo.component';
+import { LoginInformationBlockComponent } from './components/login-information-block/login-information-block.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { LogoComponent } from './shared/components/logo/logo.component';
         FilteringCriteriaBlockComponent,
         SortingPipe,
         FilteringPipe,
+        LoginInformationBlockComponent,
     ],
     providers: [],
     bootstrap: [AppComponent],
