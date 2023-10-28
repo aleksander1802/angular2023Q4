@@ -16,14 +16,8 @@
             count of views
         </a>
         <div class="sort__input">
-            <a
-                href="#"
-                (click)="setActiveSorting('word')"
-                [ngClass]="getLinkClass('word')"
-            >
-                by word or sentence
-            </a>
-            <input type="text" />
+            <span> by word or sentence </span>
+            <input type="text" [(ngModel)]="filterService.filterValue" />
         </div>
     </div>
 </div>

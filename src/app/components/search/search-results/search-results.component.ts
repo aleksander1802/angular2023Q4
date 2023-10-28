@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchItem } from 'src/app/models/search-item.model';
+import { FilterService } from 'src/app/services/filter/filter.service';
 import { ResultsService } from 'src/app/services/results/results.service';
 import { SortService } from 'src/app/services/sort/sort.service';
 
@@ -13,7 +14,8 @@ export class SearchResultsComponent implements OnInit {
 
     constructor(
         private resultsService: ResultsService,
-        public sortService: SortService
+        public sortService: SortService,
+        public filterService: FilterService
     ) {}
 
     ngOnInit() {

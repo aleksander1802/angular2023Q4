@@ -33,8 +33,9 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        a {
-            text-decoration: none;
+        span {
+            color: rgb(0, 153, 255);
+            cursor: default;
         }
         input {
             border: none;

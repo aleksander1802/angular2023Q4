@@ -2,6 +2,7 @@
     class="items"
     *ngFor="
         let item of responseItems
+            | filtering : filterService.filterValue
             | sorting : sortService.sortBy : sortService.sortOrder;
         trackBy: trackByFn
     "
