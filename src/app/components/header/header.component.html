@@ -4,22 +4,7 @@
             <div class="header__container-search">
                 <app-logo></app-logo>
 
-                <form class="search" (ngSubmit)="search(searchQuery)">
-                    <input
-                        class="search__input"
-                        placeholder="Search"
-                        [(ngModel)]="searchQuery"
-                        name="searchQuery"
-                        id="searchQuery"
-                        (keyup)="onEnterKey($event)"
-                    />
-                    <app-custom-button
-                        additionalClasses="search__input-button"
-                        type="submit"
-                    >
-                        search
-                    </app-custom-button>
-                </form>
+                <app-header-search-block></app-header-search-block>
 
                 <app-custom-button
                     additionalClasses="settings__button"

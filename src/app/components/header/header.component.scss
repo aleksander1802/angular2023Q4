@@ -23,18 +23,3 @@
         }
     }
 }
-
-.search {
-    display: flex;
-    font-size: 18px;
-    &__input {
-        color: black;
-        width: 480px;
-        border: none;
-        padding: 0.2rem;
-        background-color: #efefef;
-        &:focus {
-            outline-color: var(--primary);
-        }
-    }
-}
