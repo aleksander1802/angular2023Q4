@@ -233,7 +233,7 @@ export const mockResponse = {
             snippet: {
                 publishedAt: '2023-10-11T15:00:12.000Z',
                 channelId: 'UCg8ss4xW9jASrqWGP30jXiw',
-                title: 'Angular 8 Основы. Полный Курс для начинающих',
+                title: 'Angular 9 Основы. Полный Курс для начинающих',
                 description:
                     'Полный курс по Angular 8+:\nhttps://clc.to/angular\n\nДобавляйте меня в ВК: https://vk.com/vladilen.minin\nTelegram: https://teleg.one/js_by_vladilen\nInstagram: https://www.instagram.com/vladilen.minin\nГруппа ВК: https://vk.com/js_by_vladilen\n\nПоддержать выпуск новых видео:\nЯД: https://money.yandex.ru/to/410013757655670\nPayPal: https://www.paypal.me/vladilenm \n\nУрок по Angular. В этом курсе вы познакомитесь со всеми основными элементами, которые есть в Angular с полного нуля\n\nAngular 8 Основы. Полный Курс. Урок для Новичков',
                 thumbnails: {
