@@ -3,7 +3,7 @@
     <div class="sort">
         <a
             href="#"
-            (click)="sortService.sortByDate($event); setActiveSorting('date')"
+            (click)="handleSortByDate($event)"
             [ngClass]="getLinkClass('date')"
         >
             date
@@ -17,7 +17,7 @@
         </a>
         <a
             href="#"
-            (click)="sortService.sortByViews($event); setActiveSorting('views')"
+            (click)="handleSortByViews($event)"
             [ngClass]="getLinkClass('views')"
         >
             count of views
@@ -29,6 +29,7 @@
                 }}
             </mat-icon>
         </a>
+
         <form class="sort__input">
             <span> by word or sentence </span>
             <input

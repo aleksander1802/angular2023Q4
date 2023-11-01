@@ -9,15 +9,10 @@ import { mockResponse } from '../../data/mock-response';
 })
 export class ResultsService {
     isResultsVisible = false;
-    private mockResponse: SearchResultResponse;
-    private mockItems: SearchItem[];
+    private mockResponse: SearchResultResponse = mockResponse;
+    private mockItems: SearchItem[] = this.mockResponse.items;
     private searchResultsSubject = new BehaviorSubject<SearchItem[]>([]);
     public searchResults = this.searchResultsSubject.asObservable();
-
-    constructor() {
-        this.mockResponse = mockResponse;
-        this.mockItems = mockResponse.items;
-    }
 
     getMockResponse() {
         return this.mockResponse;

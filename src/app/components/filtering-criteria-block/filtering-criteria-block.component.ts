@@ -19,6 +19,16 @@ export class FilteringCriteriaBlockComponent {
         this.activeSorting = type;
     }
 
+    handleSortByDate(event: Event) {
+        this.sortService.sortByDate(event);
+        this.setActiveSorting('date');
+    }
+
+    handleSortByViews(event: Event) {
+        this.sortService.sortByViews(event);
+        this.setActiveSorting('views');
+    }
+
     getLinkClass(type: string): string {
         return this.activeSorting === type ? 'active' : '';
     }
