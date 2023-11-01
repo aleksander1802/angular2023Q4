@@ -1,0 +1,43 @@
+<div class="header__container-sort">
+    <span>Sorting by:</span>
+    <div class="sort">
+        <a
+            href="#"
+            (click)="handleSortByDate($event)"
+            [ngClass]="getLinkClass('date')"
+        >
+            date
+            <mat-icon *ngIf="sortService.sortBy === 'date'">
+                {{
+                    sortService.sortOrder === "asc"
+                        ? "arrow_upward"
+                        : "arrow_downward"
+                }}
+            </mat-icon>
+        </a>
+        <a
+            href="#"
+            (click)="handleSortByViews($event)"
+            [ngClass]="getLinkClass('views')"
+        >
+            count of views
+            <mat-icon *ngIf="sortService.sortBy === 'views'">
+                {{
+                    sortService.sortOrder === "asc"
+                        ? "arrow_upward"
+                        : "arrow_downward"
+                }}
+            </mat-icon>
+        </a>
+
+        <form class="sort__input">
+            <span> by word or sentence </span>
+            <input
+                type="text"
+                name="filterValue"
+                id="filterValue"
+                [(ngModel)]="filterService.filterValue"
+            />
+        </form>
+    </div>
+</div>

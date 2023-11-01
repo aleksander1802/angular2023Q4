@@ -1,0 +1,25 @@
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    justify-items: end;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    gap: 2rem;
+}
+
+.header {
+    background-color: var(--background);
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: max-content;
+        align-self: center;
+        &-search {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

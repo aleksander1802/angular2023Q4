@@ -1,0 +1,16 @@
+.account {
+    display: flex;
+    gap: 10px;
+    padding-top: 1rem;
+    align-items: center;
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        color: white;
+        background-color: var(--primary);
+        border-radius: 5px;
+    }
+}

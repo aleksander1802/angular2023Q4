@@ -1,0 +1,16 @@
+<form class="search" (ngSubmit)="search(searchQuery)">
+    <input
+        class="search__input"
+        placeholder="Search"
+        [(ngModel)]="searchQuery"
+        name="searchQuery"
+        id="searchQuery"
+        (keyup)="onEnterKey($event)"
+    />
+    <app-custom-button
+        additionalClasses="search__input-button"
+        type="submit"
+    >
+        search
+    </app-custom-button>
+</form>

@@ -1,1 +1,24 @@
-<p>header works!</p>
+<header class="header">
+    <div class="container">
+        <div class="header__container">
+            <div class="header__container-search">
+                <app-logo></app-logo>
+
+                <app-header-search-block></app-header-search-block>
+
+                <app-custom-button
+                    additionalClasses="settings__button"
+                    (click)="isSortSettingsVisible = !isSortSettingsVisible"
+                >
+                    <mat-icon> tune </mat-icon>
+                </app-custom-button>
+            </div>
+
+            <app-filtering-criteria-block
+                *ngIf="isSortSettingsVisible"
+            ></app-filtering-criteria-block>
+        </div>
+
+        <app-login-information-block></app-login-information-block>
+    </div>
+</header>
