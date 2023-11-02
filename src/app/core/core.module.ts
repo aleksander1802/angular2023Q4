@@ -6,6 +6,7 @@ import { HeaderSearchBlockComponent } from './components/header-search-block/hea
 import { FilteringCriteriaBlockComponent } from './components/filtering-criteria-block/filtering-criteria-block.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { SharedModule } from '../shared/shared.module';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
     declarations: [
@@ -13,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
         LoginInformationBlockComponent,
         HeaderSearchBlockComponent,
         FilteringCriteriaBlockComponent,
+        NotFoundComponent,
     ],
     imports: [CommonModule, SharedModule, LogoComponent],
     exports: [HeaderComponent],

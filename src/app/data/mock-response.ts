@@ -11,7 +11,7 @@ export const mockResponse = {
             etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/tmmI1yiRrmLWlKikXk1gD3TXsUI"',
             id: 'YN8zNnV0sK8',
             snippet: {
-                publishedAt: '2023-05-30T12:42:19.000Z',
+                publishedAt: '2023-10-20T12:42:19.000Z',
                 channelId: 'UCg8ss4xW9jASrqWGP30jXiw',
                 title: 'Angular 8 - Быстрый курс за 60 минут',
                 description:
@@ -231,7 +231,7 @@ export const mockResponse = {
             etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/cDwx4Ds5-J9CmiqmazUetzrLZKY"',
             id: 'Rf54BH35yrY',
             snippet: {
-                publishedAt: '2023-10-11T15:00:12.000Z',
+                publishedAt: '2023-10-20T15:00:12.000Z',
                 channelId: 'UCg8ss4xW9jASrqWGP30jXiw',
                 title: 'Angular 9 Основы. Полный Курс для начинающих',
                 description:
@@ -539,7 +539,7 @@ export const mockResponse = {
             etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/96JEWzuOaAgaHrcnKhmatlZzPME"',
             id: 'rc3E4tplFCU',
             snippet: {
-                publishedAt: '2023-10-26T15:00:14.000Z',
+                publishedAt: '2023-11-05T15:00:14.000Z',
                 channelId: 'UCg8ss4xW9jASrqWGP30jXiw',
                 title: 'Angular 40 вопросов для собеседования',
                 description:
@@ -617,7 +617,7 @@ export const mockResponse = {
             etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/pvVvPt5cchXjCoSYxodr18lOaEg"',
             id: 'NaZwVUHnmfE',
             snippet: {
-                publishedAt: '2023-06-19T16:06:13.000Z',
+                publishedAt: '2023-11-01T16:06:13.000Z',
                 channelId: 'UCg8ss4xW9jASrqWGP30jXiw',
                 title: 'Angular 8 + RxJS. Приложение Органайзер С Нуля (Для Опытных!)',
                 description:

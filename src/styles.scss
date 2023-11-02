@@ -49,6 +49,8 @@ $youtube-theme: mat.define-light-theme(
 .container {
     max-width: 1600px;
     margin: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 html,

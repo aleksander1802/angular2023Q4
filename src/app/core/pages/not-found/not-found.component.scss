@@ -1,0 +1,22 @@
+.notfound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 30px;
+    &__logo {
+        max-width: 100px;
+        max-height: 71px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    &__title {
+        max-width: 250px;
+        color: #7b7b7b;
+    }
+}
