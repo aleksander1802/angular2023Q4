@@ -8,6 +8,8 @@ import { ColorByDateDirective } from './directives/colorByDate/color-by-date.dir
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { MetricsComponent } from './components/metrics/metrics.component';
+import { DetailedInformationPageComponent } from './pages/detailed-information-page/detailed-information-page.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,8 @@ import { MetricsComponent } from './components/metrics/metrics.component';
         ColorByDateDirective,
         HomePageComponent,
         MetricsComponent,
+        DetailedInformationPageComponent,
     ],
-    imports: [CommonModule, SharedModule],
+    imports: [CommonModule, SharedModule, AppRoutingModule],
 })
 export class YoutubeModule {}

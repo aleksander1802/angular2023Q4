@@ -29,4 +29,8 @@ export class ResultsService {
 
         this.searchResultsSubject.next(results);
     }
+
+    getItemById(id: string) {
+        return this.mockItems.find((item) => item.id === id);
+    }
 }

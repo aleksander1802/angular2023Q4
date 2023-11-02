@@ -22,7 +22,7 @@ export class ColorByDateDirective implements OnInit {
         let color = '';
 
         if (differenceInDays > sixMonths) {
-            color = 'red';
+            color = 'crimson';
         } else if (
             differenceInDays >= oneMonth
             && differenceInDays <= sixMonths
@@ -34,13 +34,19 @@ export class ColorByDateDirective implements OnInit {
         ) {
             color = 'green';
         } else {
-            color = 'blue';
+            color = '#4081ec';
         }
 
         this.renderer.setStyle(
             this.elementRef.nativeElement,
             'border-bottom',
             `10px solid ${color}`
+        );
+
+        this.renderer.setStyle(
+            this.elementRef.nativeElement,
+            'border-bottom-right-radius',
+            '10px'
         );
     }
 }

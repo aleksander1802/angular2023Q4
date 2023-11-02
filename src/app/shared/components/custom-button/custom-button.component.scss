@@ -47,3 +47,17 @@
         }
     }
 }
+
+.detailed {
+    &__back {
+        &-button {
+            
+            position: absolute;
+            padding: 0.2rem .5rem;
+            box-shadow: none;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+            left: -44px;
+        }
+    }
+}

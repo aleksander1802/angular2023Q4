@@ -7,6 +7,7 @@ import { FilteringCriteriaBlockComponent } from './components/filtering-criteria
 import { LogoComponent } from './components/logo/logo.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
         FilteringCriteriaBlockComponent,
         NotFoundComponent,
     ],
-    imports: [CommonModule, SharedModule, LogoComponent],
+    imports: [CommonModule, SharedModule, LogoComponent, AppRoutingModule],
     exports: [HeaderComponent],
 })
 export class CoreModule {}

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './youtube/pages/home-page/home-page.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
+import { DetailedInformationPageComponent } from './youtube/pages/detailed-information-page/detailed-information-page.component';
 
 const routes: Routes = [
     {
@@ -11,12 +12,16 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: '/',
+                redirectTo: '/youtube',
                 pathMatch: 'full',
             },
             {
-                path: '',
+                path: 'youtube',
                 component: HomePageComponent,
+            },
+            {
+                path: 'youtube/:id',
+                component: DetailedInformationPageComponent,
             },
             {
                 path: '**',

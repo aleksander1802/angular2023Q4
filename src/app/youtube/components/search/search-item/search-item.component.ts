@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { SearchItem } from 'src/app/youtube/models/search-item.model';
 
 @Component({
@@ -8,4 +9,10 @@ import { SearchItem } from 'src/app/youtube/models/search-item.model';
 })
 export class SearchItemComponent {
     @Input() item!: SearchItem;
+
+    constructor(private router: Router) {}
+
+    onOpenDetailedPageById(itemId: string) {
+        this.router.navigate(['/youtube', itemId]);
+    }
 }
