@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { SearchResultResponse } from '../../models/search-response.model';
 import { SearchItem } from '../../models/search-item.model';
-import { mockResponse } from '../../data/mock-response';
+import { mockResponse } from '../../../data/mock-response';
 
 @Injectable({
     providedIn: 'root',

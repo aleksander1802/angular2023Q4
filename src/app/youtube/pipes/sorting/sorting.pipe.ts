@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from 'src/app/models/search-item.model';
-import { SortBy, SortOrder } from 'src/app/services/sort/sort.service';
+import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { SortBy, SortOrder } from 'src/app/youtube/services/sort/sort.service';
 
 @Pipe({
     name: 'sorting',
@@ -9,7 +9,11 @@ import { SortBy, SortOrder } from 'src/app/services/sort/sort.service';
 export class SortingPipe implements PipeTransform {
     private cachedResults = new Map<string, SearchItem[]>();
 
-    transform(value: SearchItem[], sortBy: SortBy, sortOrder: SortOrder): SearchItem[] {
+    transform(
+        value: SearchItem[],
+        sortBy: SortBy,
+        sortOrder: SortOrder
+    ): SearchItem[] {
         const cacheKey = JSON.stringify({ value, sortBy, sortOrder });
         if (this.cachedResults.has(cacheKey)) {
             const cachedValue = this.cachedResults.get(cacheKey);
@@ -22,7 +26,11 @@ export class SortingPipe implements PipeTransform {
         return sortedArray;
     }
 
-    private sort(value: SearchItem[], sortBy: SortBy, sortOrder: SortOrder): SearchItem[] {
+    private sort(
+        value: SearchItem[],
+        sortBy: SortBy,
+        sortOrder: SortOrder
+    ): SearchItem[] {
         return value.sort((a, b) => {
             const firstValue = sortBy === 'date'
                 ? new Date(a.snippet.publishedAt).getTime()
