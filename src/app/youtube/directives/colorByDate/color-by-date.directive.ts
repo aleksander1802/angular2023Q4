@@ -6,7 +6,7 @@ import {
     selector: '[appColorByDate]',
 })
 export class ColorByDateDirective implements OnInit {
-    @Input('appColorByDate') itemDate!: string;
+    @Input('appColorByDate') itemDate = '';
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 

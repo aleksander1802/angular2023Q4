@@ -12,7 +12,7 @@ import { SearchItem } from '../../models/search-item.model';
 export class DetailedInformationPageComponent implements OnInit, OnDestroy {
     detailedSub = new Subject<void>();
     currentItemId = '';
-    currentItem!: SearchItem;
+    currentItem: SearchItem | undefined;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -31,6 +31,8 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
 
                 if (item) {
                     this.currentItem = item;
+                } else {
+                    this.router.navigate(['**'], { skipLocationChange: true });
                 }
             });
     }

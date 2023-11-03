@@ -13,7 +13,7 @@ interface Metrics {
 })
 export class MetricsComponent implements OnInit {
     metricsData: Metrics[] = [];
-    @Input() item!: SearchItem;
+    @Input() item: SearchItem | undefined;
 
     ngOnInit() {
         if (this.item) {

@@ -8,27 +8,30 @@
 
     <div class="detailed__image">
         <img
-            [src]="currentItem.snippet.thumbnails.standard.url"
-            [alt]="currentItem.snippet.title"
+            [src]="currentItem?.snippet?.thumbnails?.standard?.url"
+            [alt]="currentItem?.snippet?.title"
         />
     </div>
 
     <div
         class="detailed__wrapper"
-        [appColorByDate]="currentItem.snippet.publishedAt"
+        [appColorByDate]="currentItem?.snippet?.publishedAt || ''"
     >
         <div class="detailed__wrapper-titledate">
             <h1 class="detailed__wrapper-title">
-                {{ currentItem.snippet.title }}
+                {{ currentItem?.snippet?.title }}
             </h1>
             <div class="detailed__wrapper-date">
-                {{ currentItem.snippet.publishedAt | date : "fullDate" }}
+                {{
+                    currentItem?.snippet?.publishedAt
+                        | date : "fullDate"
+                }}
             </div>
         </div>
         <div class="detailed__wrapper-about">
             <div class="detailed__wrapper-subtitle">Description:</div>
             <div class="detailed__wrapper-description">
-                {{ currentItem.snippet.description }}
+                {{ currentItem?.snippet?.description }}
             </div>
         </div>
 
