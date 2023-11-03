@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './youtube/pages/home-page/home-page.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
-import { DetailedInformationPageComponent } from './youtube/pages/detailed-information-page/detailed-information-page.component';
 
 const routes: Routes = [
     {
@@ -12,17 +10,20 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: '/youtube',
+                redirectTo: '/login',
                 pathMatch: 'full',
             },
             {
-                path: 'youtube',
-                component: HomePageComponent,
+                path: 'login',
+                loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
             },
             {
-                path: 'youtube/:id',
-                component: DetailedInformationPageComponent,
+                path: 'youtube',
+                loadChildren: () => import('./youtube/youtube.module').then(
+                    (m) => m.YoutubeModule
+                ),
             },
+
             {
                 path: '**',
                 component: NotFoundComponent,

@@ -29,7 +29,7 @@
             color: var(--background-primary);
         }
         &.active {
-            color: crimson;
+            color: var(--danger-color);
         }
     }
     &__input {

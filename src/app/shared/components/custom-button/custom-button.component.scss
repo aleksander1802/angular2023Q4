@@ -9,6 +9,11 @@
     &:hover {
         background-color: var(--background-primary);
     }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 
 .item {
@@ -51,13 +56,24 @@
 .detailed {
     &__back {
         &-button {
-            
             position: absolute;
-            padding: 0.2rem .5rem;
+            padding: 0.2rem 0.5rem;
             box-shadow: none;
             border-bottom-left-radius: 10px;
             border-top-left-radius: 10px;
             left: -44px;
+        }
+    }
+}
+
+.login {
+    &__button {
+        &-submit {
+            display: block;
+            margin-top: 1.5rem;            
+            margin-left: auto;
+            border-radius: 5px;
+            padding: .5rem 4rem;
         }
     }
 }

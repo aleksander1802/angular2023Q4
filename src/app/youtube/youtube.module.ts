@@ -9,7 +9,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { DetailedInformationPageComponent } from './pages/detailed-information-page/detailed-information-page.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { YoutubeRoutingModule } from './youtube-routing.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +22,6 @@ import { AppRoutingModule } from '../app-routing.module';
         MetricsComponent,
         DetailedInformationPageComponent,
     ],
-    imports: [CommonModule, SharedModule, AppRoutingModule],
+    imports: [CommonModule, SharedModule, YoutubeRoutingModule],
 })
 export class YoutubeModule {}
