@@ -36,7 +36,7 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
     }
 
     backToMain() {
-        this.router.navigate(['/']);
+        this.router.navigate(['/youtube']);
     }
 
     ngOnDestroy(): void {

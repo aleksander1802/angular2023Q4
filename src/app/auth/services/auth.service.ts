@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private loggedIn = false;
+    private readonly authTokenKey = 'authToken';
 
-    login() {
-        this.loggedIn = true;
-        return of(true);
+    login(username: string, password: string): boolean {
+        if (username.trim() && password.trim()) {
+            localStorage.setItem(this.authTokenKey, 'fake-auth-token12345678');
+            return true;
+        }
+        return false;
     }
 
-    logout() {
-        this.loggedIn = false;
+    logout(): void {
+        localStorage.removeItem(this.authTokenKey);
     }
 
     isLoggedIn(): boolean {
-        return this.loggedIn;
+        return !!localStorage.getItem(this.authTokenKey);
     }
 }

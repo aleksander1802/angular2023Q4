@@ -25,7 +25,6 @@ function noWhitespaceValidator(
 })
 export class LoginPageComponent implements OnInit {
     form!: FormGroup;
-
     isSubmited = false;
 
     constructor(private authService: AuthService, private router: Router) {}
@@ -49,19 +48,20 @@ export class LoginPageComponent implements OnInit {
             return;
         }
 
-        this.authService.login().subscribe({
-            next: () => {
-                this.form.reset();
-                this.router.navigate(['/youtube']);
-                this.isSubmited = false;
-            },
-            error: () => {
-                this.isSubmited = false;
-            },
-        });
+        const { login, password } = this.form.value;
+        const loggedIn = this.authService.login(login, password);
+
+        if (loggedIn) {
+            this.form.reset();
+            this.router.navigate(['/youtube']);
+            this.isSubmited = false;
+        } else {
+            this.isSubmited = false;
+        }
     }
 
     logout() {
         this.authService.logout();
+        this.router.navigate(['/login']);
     }
 }
