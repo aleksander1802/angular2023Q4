@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
         this.form = new FormGroup({
             login: new FormControl(null, [
                 Validators.required,
-                Validators.maxLength(40),
+                Validators.maxLength(25),
                 noWhitespaceValidator,
             ]),
             password: new FormControl(null, [
@@ -58,10 +58,5 @@ export class LoginPageComponent implements OnInit {
         } else {
             this.isSubmited = false;
         }
-    }
-
-    logout() {
-        this.authService.logout();
-        this.router.navigate(['/login']);
     }
 }

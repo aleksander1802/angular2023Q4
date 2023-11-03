@@ -22,7 +22,7 @@
                 Enter login
             </small>
             <small *ngIf="form.get('login')?.errors?.['maxlength']">
-                The login must not exceed 20 characters
+                The login must not exceed 25 characters
             </small>
             <small *ngIf="form.get('login')?.value?.trim().length === 0">
                 The login should not consist only of spaces

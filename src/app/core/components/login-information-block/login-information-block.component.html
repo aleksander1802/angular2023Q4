@@ -1,8 +1,16 @@
 <div class="header__container-account">
     <div class="account">
-        <span> Your Name </span>
+        <span> {{ authService.currentLogin }} </span>
         <div class="account__icon">
             <mat-icon>account_circle</mat-icon>
+        </div>
+        <div *ngIf="authService.isLoggedIn()"
+            class="account__icon"
+            (click)="logout()"
+            (keydown.enter)="logout()"
+            tabindex="0"
+        >
+            <mat-icon>logout</mat-icon>
         </div>
     </div>
 </div>
