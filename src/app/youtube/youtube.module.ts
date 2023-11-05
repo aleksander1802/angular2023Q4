@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SearchResultsComponent } from './components/search/search-results/search-results.component';
 import { SearchItemComponent } from './components/search/search-item/search-item.component';
 import { SortingPipe } from './pipes/sorting/sorting.pipe';
@@ -22,6 +21,6 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
         MetricsComponent,
         DetailedInformationPageComponent,
     ],
-    imports: [CommonModule, SharedModule, YoutubeRoutingModule],
+    imports: [SharedModule, YoutubeRoutingModule],
 })
 export class YoutubeModule {}

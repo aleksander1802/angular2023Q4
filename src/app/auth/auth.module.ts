@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SharedModule } from '../shared/shared.module';
@@ -9,12 +8,7 @@ import { LoginPermissionsService } from './guards/login.guard';
 
 @NgModule({
     declarations: [LoginPageComponent],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        SharedModule,
-        AuthRoutingModule,
-    ],
+    imports: [ReactiveFormsModule, SharedModule, AuthRoutingModule],
     providers: [AuthPermissionsService, LoginPermissionsService],
 })
 export class AuthModule {}

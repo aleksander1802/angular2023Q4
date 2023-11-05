@@ -8,6 +8,6 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 @NgModule({
     declarations: [CustomButtonComponent, MainLayoutComponent],
     imports: [CommonModule, MaterialModule, RouterModule],
-    exports: [CustomButtonComponent, MaterialModule],
+    exports: [CustomButtonComponent, MaterialModule, CommonModule],
 })
 export class SharedModule {}

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginInformationBlockComponent } from './components/login-information-block/login-information-block.component';
 import { HeaderSearchBlockComponent } from './components/header-search-block/header-search-block.component';
@@ -17,7 +16,7 @@ import { AppRoutingModule } from '../app-routing.module';
         FilteringCriteriaBlockComponent,
         NotFoundComponent,
     ],
-    imports: [CommonModule, SharedModule, LogoComponent, AppRoutingModule],
+    imports: [SharedModule, LogoComponent, AppRoutingModule],
     exports: [HeaderComponent],
 })
 export class CoreModule {}
