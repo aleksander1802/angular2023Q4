@@ -38,6 +38,7 @@ $youtube-theme: mat.define-light-theme(
     --primary: #4081ec;
     --background: #e5e5e5;
     --background-primary: rgb(20, 83, 220);
+    --danger-color: crimson;
 }
 
 * {
@@ -49,6 +50,8 @@ $youtube-theme: mat.define-light-theme(
 .container {
     max-width: 1600px;
     margin: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 html,

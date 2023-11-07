@@ -1,0 +1,68 @@
+<form class="login" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2 class="login__title">Login</h2>
+
+    <div
+        class="login__control"
+        [ngClass]="{
+            invalid: form.get('login')?.touched && form.get('login')?.invalid
+        }"
+    >
+        <label for="login">login</label>
+        <input
+            id="login"
+            type="login"
+            formControlName="login"
+            autocomplete="login"
+        />
+        <div
+            class="validation"
+            *ngIf="form.get('login')?.touched && form.get('login')?.invalid"
+        >
+            <small *ngIf="form.get('login')?.errors?.['required']">
+                Enter login
+            </small>
+            <small *ngIf="form.get('login')?.errors?.['maxlength']">
+                The login must not exceed 25 characters
+            </small>
+            <small *ngIf="form.get('login')?.value?.trim().length === 0">
+                The login should not consist only of spaces
+            </small>
+        </div>
+    </div>
+
+    <div
+        class="login__control"
+        [ngClass]="{
+            invalid:
+                form.get('password')?.touched && form.get('password')?.invalid
+        }"
+    >
+        <label for="password"> password </label>
+        <input
+            id="password"
+            type="password"
+            formControlName="password"
+            autocomplete="current-password"
+        />
+        <div
+            class="validation"
+            *ngIf="
+                form.get('password')?.touched && form.get('password')?.invalid
+            "
+        >
+            <small *ngIf="form.get('password')?.errors?.['required']">
+                Enter password
+            </small>
+            <small *ngIf="form.get('password')?.errors?.['minlength']">
+                The password must be at least 6 characters long
+            </small>
+        </div>
+    </div>
+
+    <app-custom-button
+        [disabled]="form.invalid || isSubmited"
+        additionalClasses="login__button-submit"
+    >
+        Login
+    </app-custom-button>
+</form>

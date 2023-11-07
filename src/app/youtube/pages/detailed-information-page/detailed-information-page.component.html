@@ -1,0 +1,42 @@
+<div class="detailed">
+    <app-custom-button
+        additionalClasses="detailed__back-button"
+        (click)="backToMain()"
+    >
+        <mat-icon class="detailed__icon">arrow_back_ios_new</mat-icon>
+    </app-custom-button>
+
+    <div class="detailed__image">
+        <img
+            [src]="currentItem?.snippet?.thumbnails?.standard?.url"
+            [alt]="currentItem?.snippet?.title"
+        />
+    </div>
+
+    <div
+        class="detailed__wrapper"
+        [appColorByDate]="currentItem?.snippet?.publishedAt || ''"
+    >
+        <div class="detailed__wrapper-titledate">
+            <h1 class="detailed__wrapper-title">
+                {{ currentItem?.snippet?.title }}
+            </h1>
+            <div class="detailed__wrapper-date">
+                {{
+                    currentItem?.snippet?.publishedAt
+                        | date : "fullDate"
+                }}
+            </div>
+        </div>
+        <div class="detailed__wrapper-about">
+            <div class="detailed__wrapper-subtitle">Description:</div>
+            <div class="detailed__wrapper-description">
+                {{ currentItem?.snippet?.description }}
+            </div>
+        </div>
+
+        <div class="detailed__wrapper-metrics">
+            <app-metrics [item]="currentItem"></app-metrics>
+        </div>
+    </div>
+</div>

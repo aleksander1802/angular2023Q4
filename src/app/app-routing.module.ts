@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { NotFoundComponent } from './core/pages/not-found/not-found.component';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { LoginGuard } from './auth/guards/login.guard';
 
 const routes: Routes = [
     {
@@ -10,12 +12,25 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: '/',
+                redirectTo: 'login',
                 pathMatch: 'full',
             },
             {
-                path: '',
-                component: HomePageComponent,
+                path: 'login',
+                loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+                canActivate: [LoginGuard],
+            },
+            {
+                path: 'youtube',
+                loadChildren: () => import('./youtube/youtube.module').then(
+                    (m) => m.YoutubeModule
+                ),
+                canActivate: [AuthGuard],
+            },
+
+            {
+                path: '**',
+                component: NotFoundComponent,
             },
         ],
     },
