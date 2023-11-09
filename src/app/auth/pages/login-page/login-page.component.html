@@ -4,28 +4,25 @@
     <div
         class="login__control"
         [ngClass]="{
-            invalid: form.get('login')?.touched && form.get('login')?.invalid
+            invalid: form.get('email')?.touched && form.get('email')?.invalid
         }"
     >
-        <label for="login">login</label>
+        <label for="email">login</label>
         <input
-            id="login"
-            type="login"
-            formControlName="login"
-            autocomplete="login"
+            id="email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
         />
         <div
             class="validation"
-            *ngIf="form.get('login')?.touched && form.get('login')?.invalid"
+            *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
         >
-            <small *ngIf="form.get('login')?.errors?.['required']">
-                Enter login
+            <small *ngIf="getError('email', 'required')">
+                Please enter a login email
             </small>
-            <small *ngIf="form.get('login')?.errors?.['maxlength']">
-                The login must not exceed 25 characters
-            </small>
-            <small *ngIf="form.get('login')?.value?.trim().length === 0">
-                The login should not consist only of spaces
+            <small *ngIf="getError('email', 'email')">
+                The login email is invalid
             </small>
         </div>
     </div>
@@ -43,6 +40,7 @@
             type="password"
             formControlName="password"
             autocomplete="current-password"
+            (input)="form.get('password')?.markAsTouched()"
         />
         <div
             class="validation"
@@ -50,11 +48,15 @@
                 form.get('password')?.touched && form.get('password')?.invalid
             "
         >
-            <small *ngIf="form.get('password')?.errors?.['required']">
-                Enter password
+            <small *ngIf="getError('password', 'required')">
+                Please enter a password.
+                <br />
             </small>
-            <small *ngIf="form.get('password')?.errors?.['minlength']">
-                The password must be at least 6 characters long
+
+            <small *ngIf="getError('password', 'strongPassword')">
+                Your password isn't strong enough. <br />
+                Recommendations:
+                {{form.get('password')?.errors?.['message']}}
             </small>
         </div>
     </div>

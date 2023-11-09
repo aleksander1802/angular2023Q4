@@ -1,22 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    AbstractControl,
-    FormControl,
-    FormGroup,
-    ValidationErrors,
-    Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
-function noWhitespaceValidator(
-    control: AbstractControl
-): ValidationErrors | null {
-    if (control.value && control.value.trim().length === 0) {
-        return { whitespace: true };
-    }
-    return null;
-}
+import { passwordValidator } from '../../validators/password.validator';
 
 @Component({
     selector: 'app-login-page',
@@ -31,14 +17,10 @@ export class LoginPageComponent implements OnInit {
 
     ngOnInit() {
         this.form = new FormGroup({
-            login: new FormControl(null, [
+            email: new FormControl('', [Validators.required, Validators.email]),
+            password: new FormControl('', [
                 Validators.required,
-                Validators.maxLength(25),
-                noWhitespaceValidator,
-            ]),
-            password: new FormControl(null, [
-                Validators.required,
-                Validators.minLength(6),
+                passwordValidator(),
             ]),
         });
     }
@@ -48,15 +30,27 @@ export class LoginPageComponent implements OnInit {
             return;
         }
 
-        const { login, password } = this.form.value;
-        const loggedIn = this.authService.login(login, password);
+        const { email, password } = this.form.value;
+        const loggedIn = this.authService.login(email, password);
 
         if (loggedIn) {
-            this.form.reset();
-            this.router.navigate(['/youtube']);
-            this.isSubmited = false;
+            this.handleSuccessfulLogin();
         } else {
-            this.isSubmited = false;
+            this.handleFailedLogin();
         }
+    }
+
+    handleSuccessfulLogin() {
+        this.form.reset();
+        this.router.navigate(['/youtube']);
+        this.isSubmited = false;
+    }
+
+    handleFailedLogin() {
+        this.isSubmited = false;
+    }
+
+    getError(controlName: string, errorName: string) {
+        return this.form.get(controlName)?.hasError(errorName);
     }
 }
