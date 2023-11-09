@@ -1,4 +1,4 @@
-.login {
+.admin {
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
@@ -28,6 +28,25 @@
             padding: 1rem;
         }
     }
+
+    &__button {
+        display: flex;
+        justify-content: space-between;
+        
+    }
+
+    &__subform {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 10px;
+        border: 2px solid var(--primary);
+        margin-top: 1rem;
+        &__button {
+            align-self: center;
+            width: 100%;       
+        }
+    }
 }
 
 .validation {
@@ -42,4 +61,3 @@
         outline-color: var(--danger-color);
     }
 }
-

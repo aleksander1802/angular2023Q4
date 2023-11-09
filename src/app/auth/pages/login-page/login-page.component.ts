@@ -11,7 +11,7 @@ import { passwordValidator } from '../../validators/password.validator';
 })
 export class LoginPageComponent implements OnInit {
     form!: FormGroup;
-    isSubmited = false;
+    isSubmitted = false;
 
     constructor(private authService: AuthService, private router: Router) {}
 
@@ -30,6 +30,8 @@ export class LoginPageComponent implements OnInit {
             return;
         }
 
+        this.isSubmitted = true;
+
         const { email, password } = this.form.value;
         const loggedIn = this.authService.login(email, password);
 
@@ -43,11 +45,11 @@ export class LoginPageComponent implements OnInit {
     handleSuccessfulLogin() {
         this.form.reset();
         this.router.navigate(['/youtube']);
-        this.isSubmited = false;
+        this.isSubmitted = false;
     }
 
     handleFailedLogin() {
-        this.isSubmited = false;
+        this.isSubmitted = false;
     }
 
     getError(controlName: string, errorName: string) {
