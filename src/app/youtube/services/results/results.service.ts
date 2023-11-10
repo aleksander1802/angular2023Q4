@@ -4,7 +4,7 @@ import {
     catchError, map, mergeMap, switchMap
 } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { API_KEY, URL_SEARCH, URL_VIDEOS } from '../../../../../constants';
+import { URL_SEARCH, URL_VIDEOS } from '../../../../../constants';
 import {
     SearchResultResponse,
     SearchVideoResponse,
@@ -17,7 +17,6 @@ import { SearchItem, VideoItem } from '../../models/search-item.model';
 export class ResultsService {
     private apiUrl = URL_SEARCH;
     private apiVideo = URL_VIDEOS;
-    private apiKey = API_KEY;
 
     isResultsVisible = false;
 
@@ -40,7 +39,6 @@ export class ResultsService {
 
         const params = new HttpParams()
             .set('q', query)
-            .set('key', this.apiKey)
             .set('part', 'snippet')
             .set('type', 'video')
             .set('maxResults', queryLimit);
@@ -62,7 +60,6 @@ export class ResultsService {
 
     getAllVideoItemsById(id: string): Observable<VideoItem[]> {
         const params = new HttpParams()
-            .set('key', this.apiKey)
             .set('part', 'snippet,statistics')
             .set('id', id);
         return this.httpClient
@@ -78,7 +75,6 @@ export class ResultsService {
 
     getVideoItemById(id: string): Observable<VideoItem[]> {
         const params = new HttpParams()
-            .set('key', this.apiKey)
             .set('part', 'snippet,statistics')
             .set('id', id);
 
