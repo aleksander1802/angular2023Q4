@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -7,11 +7,18 @@ import { AuthService } from 'src/app/auth/services/auth.service';
     templateUrl: './login-information-block.component.html',
     styleUrls: ['./login-information-block.component.scss'],
 })
-export class LoginInformationBlockComponent {
+export class LoginInformationBlockComponent implements OnInit {
+    isLoggedIn = false;
     constructor(private router: Router, public authService: AuthService) {}
 
+    ngOnInit() {
+        this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
+            this.isLoggedIn = isLoggedIn;
+        });
+    }
+
     logout() {
-        if (this.authService.isLoggedIn()) {
+        if (this.isLoggedIn) {
             this.authService.logout();
             this.router.navigate(['/login']);
         }
