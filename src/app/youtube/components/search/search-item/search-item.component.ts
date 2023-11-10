@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { VideoItem } from 'src/app/youtube/models/search-item.model';
 
 @Component({
     selector: 'app-search-item',
@@ -8,7 +8,7 @@ import { SearchItem } from 'src/app/youtube/models/search-item.model';
     styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent {
-    @Input() item!: SearchItem;
+    @Input() item!: VideoItem;
 
     constructor(private router: Router) {}
 

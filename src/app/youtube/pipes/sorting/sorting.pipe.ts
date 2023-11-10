@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { VideoItem } from 'src/app/youtube/models/search-item.model';
 import { SortBy, SortOrder } from 'src/app/youtube/services/sort/sort.service';
 
 @Pipe({
@@ -7,13 +7,13 @@ import { SortBy, SortOrder } from 'src/app/youtube/services/sort/sort.service';
     pure: true,
 })
 export class SortingPipe implements PipeTransform {
-    private cachedResults = new Map<string, SearchItem[]>();
+    private cachedResults = new Map<string, VideoItem[]>();
 
     transform(
-        value: SearchItem[],
+        value: VideoItem[],
         sortBy: SortBy,
         sortOrder: SortOrder
-    ): SearchItem[] {
+    ): VideoItem[] {
         const cacheKey = JSON.stringify({ value, sortBy, sortOrder });
         if (this.cachedResults.has(cacheKey)) {
             const cachedValue = this.cachedResults.get(cacheKey);
@@ -27,10 +27,10 @@ export class SortingPipe implements PipeTransform {
     }
 
     private sort(
-        value: SearchItem[],
+        value: VideoItem[],
         sortBy: SortBy,
         sortOrder: SortOrder
-    ): SearchItem[] {
+    ): VideoItem[] {
         return value.sort((a, b) => {
             const firstValue = sortBy === 'date'
                 ? new Date(a.snippet.publishedAt).getTime()

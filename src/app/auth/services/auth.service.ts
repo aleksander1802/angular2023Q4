@@ -27,7 +27,7 @@ export class AuthService {
         return false;
     }
 
-    logout(): void {
+    logout() {
         localStorage.removeItem(this.authTokenKey);
         localStorage.removeItem(this.usernameKey);
         this.currentLogin = 'Your name';

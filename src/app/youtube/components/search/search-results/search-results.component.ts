@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { VideoItem } from 'src/app/youtube/models/search-item.model';
 import { FilterService } from 'src/app/youtube/services/filter/filter.service';
 import { ResultsService } from 'src/app/youtube/services/results/results.service';
 import { SortService } from 'src/app/youtube/services/sort/sort.service';
@@ -11,8 +12,8 @@ import { SortService } from 'src/app/youtube/services/sort/sort.service';
     styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-    responseItems: SearchItem[] = [];
-    searchResultSub$: Subscription | undefined;
+    responseVideoItems$: Observable<VideoItem[]> | null = null;
+    private onDestroy = new Subject<void>();
 
     constructor(
         private resultsService: ResultsService,
@@ -21,20 +22,17 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        this.searchResultSub$ = this.resultsService.searchResults.subscribe(
-            (items) => {
-                this.responseItems = items;
-            }
-        );
+        this.responseVideoItems$ = this.resultsService
+            .getSearchResults()
+            .pipe(takeUntil(this.onDestroy));
     }
 
-    trackByFn(_index: number, responseItems: SearchItem) {
+    trackByFn(_index: number, responseItems: VideoItem) {
         return responseItems.id;
     }
 
-    ngOnDestroy(): void {
-        if (this.searchResultSub$) {
-            this.searchResultSub$.unsubscribe();
-        }
+    ngOnDestroy() {
+        this.onDestroy.next();
+        this.onDestroy.complete();
     }
 }

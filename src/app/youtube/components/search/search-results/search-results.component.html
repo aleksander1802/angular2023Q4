@@ -1,7 +1,7 @@
 <app-search-item
     class="items"
     *ngFor="
-        let item of responseItems
+        let item of (responseVideoItems$ | async) || []
             | filtering : filterService.filterValue
             | sorting : sortService.sortBy : sortService.sortOrder;
         trackBy: trackByFn

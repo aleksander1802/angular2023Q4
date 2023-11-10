@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+    Subject, debounceTime, distinctUntilChanged, takeUntil
+} from 'rxjs';
 import { ResultsService } from 'src/app/youtube/services/results/results.service';
 
 @Component({
@@ -6,18 +9,34 @@ import { ResultsService } from 'src/app/youtube/services/results/results.service
     templateUrl: './header-search-block.component.html',
     styleUrls: ['./header-search-block.component.scss'],
 })
-export class HeaderSearchBlockComponent {
+export class HeaderSearchBlockComponent implements OnInit, OnDestroy {
     searchQuery = '';
+    private destroy$ = new Subject<void>();
+    private searchSubject = new Subject<string>();
+    private debounceDelay = 1000;
 
     constructor(private resultsService: ResultsService) {}
+    ngOnInit() {
+        this.searchSubject
+            .pipe(
+                debounceTime(this.debounceDelay),
+                distinctUntilChanged(),
+                takeUntil(this.destroy$)
+            )
+            .subscribe((query) => {
+                if (query.length >= 3) {
+                    this.resultsService.isResultsVisible = true;
+                    this.resultsService.searchInputValueSubject.next(query);
+                }
+            });
+    }
 
     onSearchInput() {
-        if (this.searchQuery.length > 3) {
-            this.resultsService.isResultsVisible = true;
+        this.searchSubject.next(this.searchQuery);
+    }
 
-            this.resultsService.getSearchResults(
-                this.searchQuery.toLowerCase().trim()
-            );
-        }
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
