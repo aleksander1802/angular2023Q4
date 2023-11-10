@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class LoginInformationBlockComponent implements OnInit {
     isLoggedIn = false;
+
     constructor(private router: Router, public authService: AuthService) {}
 
     ngOnInit() {
@@ -17,9 +18,11 @@ export class LoginInformationBlockComponent implements OnInit {
         });
     }
 
-    logout() {
+    toggleLoginStatus() {
         if (this.isLoggedIn) {
             this.authService.logout();
+            this.router.navigate(['/login']);
+        } else {
             this.router.navigate(['/login']);
         }
     }
