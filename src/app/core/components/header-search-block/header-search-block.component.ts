@@ -11,17 +11,13 @@ export class HeaderSearchBlockComponent {
 
     constructor(private resultsService: ResultsService) {}
 
-    search(value: string) {
-        this.resultsService.isResultsVisible = true;
+    onSearchInput() {
+        if (this.searchQuery.length > 3) {
+            this.resultsService.isResultsVisible = true;
 
-        this.resultsService.getSearchResults(value.toLowerCase().trim());
-    }
-
-    onEnterKey(event: KeyboardEvent) {
-        if (event.key === 'Enter') {
-            const { value } = event.target as HTMLInputElement;
-
-            this.search(value.toLowerCase().trim());
+            this.resultsService.getSearchResults(
+                this.searchQuery.toLowerCase().trim()
+            );
         }
     }
 }
