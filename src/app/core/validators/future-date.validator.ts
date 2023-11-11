@@ -5,6 +5,10 @@ export function currentDateValidator(): ValidatorFn {
         const inputDate = new Date(control.value);
         const currentDate = new Date();
 
+        const hoursToSubtract = 3;
+
+        inputDate.setUTCHours(inputDate.getUTCHours() - hoursToSubtract);
+
         if (inputDate > currentDate) {
             return { futureDate: true };
         }
