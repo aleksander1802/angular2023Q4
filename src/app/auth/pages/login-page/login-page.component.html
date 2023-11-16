@@ -3,9 +3,7 @@
 
     <div
         class="login__control"
-        [ngClass]="{
-            invalid: form.get('email')?.touched && form.get('email')?.invalid
-        }"
+        [ngClass]="{ invalid: email?.touched && email?.invalid }"
     >
         <label for="email">login</label>
         <input
@@ -14,10 +12,7 @@
             formControlName="email"
             autocomplete="email"
         />
-        <div
-            class="validation"
-            *ngIf="form.get('email')?.touched && form.get('email')?.invalid"
-        >
+        <div class="validation" *ngIf="email?.touched && email?.invalid">
             <small *ngIf="getError('email', 'required')">
                 Please enter a login email
             </small>
@@ -29,10 +24,7 @@
 
     <div
         class="login__control"
-        [ngClass]="{
-            invalid:
-                form.get('password')?.touched && form.get('password')?.invalid
-        }"
+        [ngClass]="{ invalid: password?.touched && password?.invalid }"
     >
         <label for="password"> password </label>
         <input
@@ -40,23 +32,17 @@
             type="password"
             formControlName="password"
             autocomplete="current-password"
-            (input)="form.get('password')?.markAsTouched()"
+            (input)="password?.markAsTouched()"
         />
-        <div
-            class="validation"
-            *ngIf="
-                form.get('password')?.touched && form.get('password')?.invalid
-            "
-        >
+        <div class="validation" *ngIf="password?.touched && password?.invalid">
             <small *ngIf="getError('password', 'required')">
-                Please enter a password.
-                <br />
+                Please enter a password. <br />
             </small>
 
             <small *ngIf="getError('password', 'strongPassword')">
                 Your password isn't strong enough. <br />
                 Recommendations:
-                {{form.get('password')?.errors?.['message']}}
+                {{ password?.errors?.['message'] }}
             </small>
         </div>
     </div>

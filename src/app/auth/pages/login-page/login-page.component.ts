@@ -25,6 +25,14 @@ export class LoginPageComponent implements OnInit {
         });
     }
 
+    get email() {
+        return this.form.get('email');
+    }
+
+    get password() {
+        return this.form.get('password');
+    }
+
     onSubmit() {
         if (this.form.invalid) {
             return;
@@ -44,8 +52,8 @@ export class LoginPageComponent implements OnInit {
 
     handleSuccessfulLogin() {
         this.form.reset();
-        this.router.navigate(['/youtube']);
         this.isSubmitted = false;
+        this.router.navigate(['/youtube']);
     }
 
     handleFailedLogin() {
