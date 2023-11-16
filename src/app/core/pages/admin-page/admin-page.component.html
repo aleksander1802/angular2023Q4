@@ -5,8 +5,7 @@
         <div
             class="admin__control"
             [ngClass]="{
-                invalid:
-                    form.get('title')?.touched && form.get('title')?.invalid
+                invalid: title?.touched && title?.invalid
             }"
         >
             <label for="title">Title</label>
@@ -16,10 +15,7 @@
                 formControlName="title"
                 autocomplete="title"
             />
-            <div
-                class="validation"
-                *ngIf="form.get('title')?.touched && form.get('title')?.invalid"
-            >
+            <div class="validation" *ngIf="title?.touched && title?.invalid">
                 <small *ngIf="getError('title', 'required')">
                     Please enter a title
                 </small>
@@ -35,9 +31,7 @@
         <div
             class="admin__control"
             [ngClass]="{
-                invalid:
-                    form.get('description')?.touched &&
-                    form.get('description')?.invalid
+                invalid: description?.touched && description?.invalid
             }"
         >
             <label for="description">Description</label>
@@ -49,10 +43,7 @@
             />
             <div
                 class="validation"
-                *ngIf="
-                    form.get('description')?.touched &&
-                    form.get('description')?.invalid
-                "
+                *ngIf="description?.touched && description?.invalid"
             >
                 <small *ngIf="getError('description', 'maxlength')">
                     The description is too long
@@ -63,9 +54,7 @@
         <div
             class="admin__control"
             [ngClass]="{
-                invalid:
-                    form.get('imageLink')?.touched &&
-                    form.get('imageLink')?.invalid
+                invalid: imageLink?.touched && imageLink?.invalid
             }"
         >
             <label for="imageLink">Link image</label>
@@ -77,10 +66,7 @@
             />
             <div
                 class="validation"
-                *ngIf="
-                    form.get('imageLink')?.touched &&
-                    form.get('imageLink')?.invalid
-                "
+                *ngIf="imageLink?.touched && imageLink?.invalid"
             >
                 <small *ngIf="getError('imageLink', 'required')">
                     Please enter a link to the image
@@ -91,12 +77,10 @@
         <div
             class="admin__control"
             [ngClass]="{
-                invalid:
-                    form.get('videoLink')?.touched &&
-                    form.get('videoLink')?.invalid
+                invalid: videoLink?.touched && videoLink?.invalid
             }"
         >
-            <label for="imageLink">Link video</label>
+            <label for="videoLink">Link video</label>
             <input
                 id="videoLink"
                 type="text"
@@ -105,10 +89,7 @@
             />
             <div
                 class="validation"
-                *ngIf="
-                    form.get('videoLink')?.touched &&
-                    form.get('videoLink')?.invalid
-                "
+                *ngIf="videoLink?.touched && videoLink?.invalid"
             >
                 <small *ngIf="getError('videoLink', 'required')">
                     Please enter a link to the video
@@ -119,12 +100,10 @@
         <div
             class="admin__control"
             [ngClass]="{
-                invalid:
-                    form.get('creationDate')?.touched &&
-                    form.get('creationDate')?.invalid
+                invalid: creationDate?.touched && creationDate?.invalid
             }"
         >
-            <label for="imageLink">Creation date</label>
+            <label for="creationDate">Creation date</label>
             <input
                 id="creationDate"
                 type="date"
@@ -133,10 +112,7 @@
             />
             <div
                 class="validation"
-                *ngIf="
-                    form.get('creationDate')?.touched &&
-                    form.get('creationDate')?.invalid
-                "
+                *ngIf="creationDate?.touched && creationDate?.invalid"
             >
                 <small *ngIf="getError('creationDate', 'required')">
                     Please enter a creation date

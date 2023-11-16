@@ -37,14 +37,34 @@ export class AdminPageComponent implements OnInit {
         return this.form.get(controlName)?.hasError(errorName);
     }
 
-    createTagFormControl(): FormGroup {
-        return this.fb.group({
-            tag: ['', Validators.required],
-        });
+    get title() {
+        return this.form.get('title');
+    }
+
+    get description() {
+        return this.form.get('description');
+    }
+
+    get imageLink() {
+        return this.form.get('imageLink');
+    }
+
+    get videoLink() {
+        return this.form.get('videoLink');
+    }
+
+    get creationDate() {
+        return this.form.get('creationDate');
     }
 
     get tags(): FormArray {
         return this.form.get('tags') as FormArray;
+    }
+
+    createTagFormControl(): FormGroup {
+        return this.fb.group({
+            tag: ['', Validators.required],
+        });
     }
 
     addTagInput() {
