@@ -1,36 +1,91 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { SearchResultResponse } from '../../models/search-response.model';
-import { SearchItem } from '../../models/search-item.model';
-import { mockResponse } from '../../../data/mock-response';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import {
+    catchError, map, mergeMap, switchMap
+} from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { URL_SEARCH, URL_VIDEOS } from '../../../../../constants';
+import {
+    SearchResultResponse,
+    SearchVideoResponse,
+} from '../../models/search-response.model';
+import { SearchItem, VideoItem } from '../../models/search-item.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ResultsService {
+    private apiUrl = URL_SEARCH;
+    private apiVideo = URL_VIDEOS;
+
     isResultsVisible = false;
-    private mockResponse: SearchResultResponse = mockResponse;
-    private mockItems: SearchItem[] = this.mockResponse.items;
-    private searchResultsSubject = new BehaviorSubject<SearchItem[]>([]);
-    public searchResults = this.searchResultsSubject.asObservable();
 
-    getMockResponse() {
-        return this.mockResponse;
+    searchInputValueSubject = new BehaviorSubject<string>('');
+
+    public searchResultsSubject$!: Observable<SearchResultResponse[]>;
+
+    constructor(private httpClient: HttpClient) {}
+
+    getSearchResults() {
+        return this.searchInputValueSubject.pipe(
+            mergeMap((value) => this.fetchSearchResults(value)),
+            map((items) => this.getGenerateConcatenatedVideoIds(items)),
+            switchMap((itemId) => this.getAllVideoItemsById(itemId))
+        );
     }
 
-    getMockItems() {
-        return this.mockItems;
+    fetchSearchResults(query: string): Observable<SearchItem[]> {
+        const queryLimit = '10';
+
+        const params = new HttpParams()
+            .set('q', query)
+            .set('part', 'snippet')
+            .set('type', 'video')
+            .set('maxResults', queryLimit);
+
+        return this.httpClient
+            .get<SearchResultResponse>(this.apiUrl, { params })
+            .pipe(
+                map((response) => response.items),
+                catchError((error) => {
+                    console.error('Error fetching search results:', error);
+                    return throwError(() => 'Failed to fetch search results');
+                })
+            );
     }
 
-    getSearchResults(query: string) {
-        const minLen = (item: SearchItem) => item.snippet.title.toLowerCase();
-
-        const results = this.mockItems.filter((item) => minLen(item).includes(query));
-
-        this.searchResultsSubject.next(results);
+    getGenerateConcatenatedVideoIds(items: SearchItem[]): string {
+        return items.map(({ id }) => id.videoId).join(',');
     }
 
-    getItemById(id: string) {
-        return this.mockItems.find((item) => item.id === id);
+    getAllVideoItemsById(id: string): Observable<VideoItem[]> {
+        const params = new HttpParams()
+            .set('part', 'snippet,statistics')
+            .set('id', id);
+        return this.httpClient
+            .get<SearchVideoResponse>(this.apiVideo, { params })
+            .pipe(
+                map((video) => video.items),
+                catchError((error) => {
+                    console.error('Error fetching video results:', error);
+                    return throwError(() => 'Failed to fetch video results');
+                })
+            );
+    }
+
+    getVideoItemById(id: string): Observable<VideoItem[]> {
+        const params = new HttpParams()
+            .set('part', 'snippet,statistics')
+            .set('id', id);
+
+        return this.httpClient
+            .get<SearchVideoResponse>(this.apiVideo, { params })
+            .pipe(
+                map((videoResponse) => videoResponse.items),
+                catchError((error) => {
+                    console.error('Error fetching search results:', error);
+                    return throwError(() => 'Failed to fetch search results');
+                })
+            );
     }
 }

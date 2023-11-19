@@ -1,0 +1,184 @@
+<div class="admin">
+    <h2 class="admin__title">Create new card</h2>
+
+    <form class="admin__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div
+            class="admin__control"
+            [ngClass]="{
+                invalid: title?.touched && title?.invalid
+            }"
+        >
+            <label for="title">Title</label>
+            <input
+                id="title"
+                type="text"
+                formControlName="title"
+                autocomplete="title"
+            />
+            <div class="validation" *ngIf="title?.touched && title?.invalid">
+                <small *ngIf="getError('title', 'required')">
+                    Please enter a title
+                </small>
+                <small *ngIf="getError('title', 'minlength')">
+                    The title is too short
+                </small>
+                <small *ngIf="getError('title', 'maxlength')">
+                    The title is too long
+                </small>
+            </div>
+        </div>
+
+        <div
+            class="admin__control"
+            [ngClass]="{
+                invalid: description?.touched && description?.invalid
+            }"
+        >
+            <label for="description">Description</label>
+            <input
+                id="description"
+                type="text"
+                formControlName="description"
+                autocomplete="description"
+            />
+            <div
+                class="validation"
+                *ngIf="description?.touched && description?.invalid"
+            >
+                <small *ngIf="getError('description', 'maxlength')">
+                    The description is too long
+                </small>
+            </div>
+        </div>
+
+        <div
+            class="admin__control"
+            [ngClass]="{
+                invalid: imageLink?.touched && imageLink?.invalid
+            }"
+        >
+            <label for="imageLink">Link image</label>
+            <input
+                id="imageLink"
+                type="text"
+                formControlName="imageLink"
+                autocomplete="imageLink"
+            />
+            <div
+                class="validation"
+                *ngIf="imageLink?.touched && imageLink?.invalid"
+            >
+                <small *ngIf="getError('imageLink', 'required')">
+                    Please enter a link to the image
+                </small>
+            </div>
+        </div>
+
+        <div
+            class="admin__control"
+            [ngClass]="{
+                invalid: videoLink?.touched && videoLink?.invalid
+            }"
+        >
+            <label for="videoLink">Link video</label>
+            <input
+                id="videoLink"
+                type="text"
+                formControlName="videoLink"
+                autocomplete="videoLink"
+            />
+            <div
+                class="validation"
+                *ngIf="videoLink?.touched && videoLink?.invalid"
+            >
+                <small *ngIf="getError('videoLink', 'required')">
+                    Please enter a link to the video
+                </small>
+            </div>
+        </div>
+
+        <div
+            class="admin__control"
+            [ngClass]="{
+                invalid: creationDate?.touched && creationDate?.invalid
+            }"
+        >
+            <label for="creationDate">Creation date</label>
+            <input
+                id="creationDate"
+                type="date"
+                formControlName="creationDate"
+                autocomplete="creationDate"
+            />
+            <div
+                class="validation"
+                *ngIf="creationDate?.touched && creationDate?.invalid"
+            >
+                <small *ngIf="getError('creationDate', 'required')">
+                    Please enter a creation date
+                </small>
+                <small *ngIf="getError('creationDate', 'futureDate')">
+                    The date is invalid
+                </small>
+            </div>
+        </div>
+
+        <div class="admin__subform" formArrayName="tags">
+            <div
+                class="admin__control"
+                *ngFor="let tag of tags.controls; let i = index"
+                [formGroupName]="i"
+                [ngClass]="{
+                    invalid:
+                        tags.controls[i].get('tag')?.touched &&
+                        tags.controls[i].get('tag')?.invalid
+                }"
+            >
+                <label [for]="'tag' + i">Tag {{ i + 1 }}</label>
+                <input
+                    type="text"
+                    [id]="'tag' + i"
+                    formControlName="tag"
+                    autocomplete="off"
+                />
+                <div
+                    class="validation"
+                    *ngIf="
+                        tags.controls[i].get('tag')?.touched &&
+                        tags.controls[i].get('tag')?.invalid
+                    "
+                >
+                    <small
+                        *ngIf="tags.controls[i].get('tag')?.errors?.['required']"
+                        >Please enter a tag</small
+                    >
+                </div>
+            </div>
+            <div class="admin__subform__button">
+                <app-custom-button
+                    additionalClasses="admin__button-add"
+                    type="button"
+                    (click)="addTagInput()"
+                    >Add tag</app-custom-button
+                >
+            </div>
+        </div>
+
+        <div class="admin__button">
+            <app-custom-button
+                additionalClasses="admin__button-reset"
+                type="button"
+                (click)="onFormReset()"
+            >
+                Reset
+            </app-custom-button>
+            <app-custom-button
+                [disabled]="form.invalid || isSubmitted"
+                additionalClasses="admin__button-submit"
+                type="submit"
+            >
+                Create card
+            </app-custom-button>
+        </div>
+    </form>
+</div>

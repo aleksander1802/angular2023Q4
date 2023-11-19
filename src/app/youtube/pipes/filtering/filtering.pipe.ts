@@ -1,17 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { VideoItem } from 'src/app/youtube/models/search-item.model';
 
 @Pipe({
     name: 'filtering',
 })
 export class FilteringPipe implements PipeTransform {
-    transform(value: SearchItem[], filterValue: string): SearchItem[] {
+    transform(value: VideoItem[], filterValue: string): VideoItem[] {
         const trimmed = filterValue.toLowerCase().trim();
 
         return this.filter(value, trimmed);
     }
 
-    filter(value: SearchItem[], filterValue: string): SearchItem[] {
+    filter(value: VideoItem[], filterValue: string): VideoItem[] {
         return value.filter((item) => {
             const title = item.snippet.title.toLowerCase().trim();
             return title.indexOf(filterValue) !== -1;
