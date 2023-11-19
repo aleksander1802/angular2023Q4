@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
 import { MaterialModule } from '../material/material.module';
 import { MainLayoutComponent } from './components/main-layout/main-layout.component';
-import { MetricsComponent } from '../youtube/components/metrics/metrics.component';
 import { ColorByDateDirective } from './directives/colorByDate/color-by-date.directive';
 import { FilteringPipe } from './pipes/filtering/filtering.pipe';
 import { SortingPipe } from './pipes/sorting/sorting.pipe';
+import { MetricsComponent } from './components/metrics/metrics.component';
 
 @NgModule({
     declarations: [

@@ -34,10 +34,10 @@ export class SortingPipe implements PipeTransform {
         return value.sort((a, b) => {
             const firstValue = sortBy === 'date'
                 ? new Date(a.snippet.publishedAt).getTime()
-                : Number(a.statistics.viewCount);
+                : Number(a?.statistics?.viewCount || 0);
             const secondValue = sortBy === 'date'
                 ? new Date(b.snippet.publishedAt).getTime()
-                : Number(b.statistics.viewCount);
+                : Number(b?.statistics?.viewCount || 0);
             if (sortOrder === 'asc') {
                 return firstValue - secondValue;
             }
