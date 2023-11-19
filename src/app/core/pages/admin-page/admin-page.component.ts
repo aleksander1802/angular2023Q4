@@ -5,6 +5,8 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { VideoItem } from 'src/app/youtube/models/search-item.model';
 import { CustomCardFormValue } from 'src/app/youtube/models/custom-card.model';
+import { createCustomCard } from 'src/app/store/actions/custom-card.actions';
+import { Store } from '@ngrx/store';
 import { currentDateValidator } from '../../validators/future-date.validator';
 import { urlValidator } from '../../validators/url-link.validator';
 
@@ -16,7 +18,7 @@ import { urlValidator } from '../../validators/url-link.validator';
 export class AdminPageComponent implements OnInit {
     form!: FormGroup;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private store: Store) {}
 
     ngOnInit() {
         this.form = this.fb.group({
@@ -77,11 +79,10 @@ export class AdminPageComponent implements OnInit {
     }
 
     onFormReset() {
+        const fbArray = this.fb.array([this.createTagFormControl()]);
+
+        this.form.setControl('tags', fbArray);
         this.form.reset();
-        this.form.setControl(
-            'tags',
-            this.fb.array([this.createTagFormControl()])
-        );
     }
 
     onSubmit() {
@@ -89,6 +90,8 @@ export class AdminPageComponent implements OnInit {
             return;
         }
         const customCard = this.mapFormValueToCustomCard(this.form.value);
+
+        this.store.dispatch(createCustomCard({ customCard }));
 
         this.onFormReset();
     }
