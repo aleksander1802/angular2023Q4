@@ -4,6 +4,7 @@ import {
     catchError, map, mergeMap, switchMap
 } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 import { URL_SEARCH, URL_VIDEOS } from '../../../../../constants';
 import {
     SearchResultResponse,
@@ -24,7 +25,7 @@ export class ResultsService {
 
     public searchResultsSubject$!: Observable<SearchResultResponse[]>;
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient, private store: Store) {}
 
     getSearchResults() {
         return this.searchInputValueSubject.pipe(
@@ -34,7 +35,18 @@ export class ResultsService {
         );
     }
 
-    fetchSearchResults(query: string): Observable<SearchItem[]> {
+    fetchSearchResults(query: string) {
+        const params = this.buildSearchParams(query);
+
+        return this.httpClient
+            .get<SearchResultResponse>(this.apiUrl, { params })
+            .pipe(
+                map((response) => this.handleSearchResponse(response)),
+                catchError(() => this.handleSearchError())
+            );
+    }
+
+    private buildSearchParams(query: string) {
         const queryLimit = '10';
 
         const params = new HttpParams()
@@ -43,15 +55,15 @@ export class ResultsService {
             .set('type', 'video')
             .set('maxResults', queryLimit);
 
-        return this.httpClient
-            .get<SearchResultResponse>(this.apiUrl, { params })
-            .pipe(
-                map((response) => response.items),
-                catchError((error) => {
-                    console.error('Error fetching search results:', error);
-                    return throwError(() => 'Failed to fetch search results');
-                })
-            );
+        return params;
+    }
+
+    private handleSearchResponse(response: SearchResultResponse) {
+        return response.items;
+    }
+
+    private handleSearchError() {
+        return throwError(() => 'Failed to fetch search results');
     }
 
     getGenerateConcatenatedVideoIds(items: SearchItem[]): string {
