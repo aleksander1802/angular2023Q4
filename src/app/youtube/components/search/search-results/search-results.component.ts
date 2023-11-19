@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { Observable, Subject, combineLatest } from 'rxjs';
+import { map, startWith, takeUntil } from 'rxjs/operators';
+import { selectCustomCardItems } from 'src/app/store/selectors/custom-card.selectors';
+import { selectVideoCardItems } from 'src/app/store/selectors/video-cards.selectors';
 import { VideoItem } from 'src/app/youtube/models/search-item.model';
 import { FilterService } from 'src/app/youtube/services/filter/filter.service';
-import { ResultsService } from 'src/app/youtube/services/results/results.service';
 import { SortService } from 'src/app/youtube/services/sort/sort.service';
 
 @Component({
@@ -12,19 +14,31 @@ import { SortService } from 'src/app/youtube/services/sort/sort.service';
     styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-    responseVideoItems$: Observable<VideoItem[]> | null = null;
+    combinedVideoItems$: Observable<VideoItem[]> | null = null;
     private onDestroy = new Subject<void>();
 
     constructor(
-        private resultsService: ResultsService,
         public sortService: SortService,
-        public filterService: FilterService
+        public filterService: FilterService,
+        private store: Store
     ) {}
 
     ngOnInit() {
-        this.responseVideoItems$ = this.resultsService
-            .getSearchResults()
-            .pipe(takeUntil(this.onDestroy));
+        const searchResults$ = this.store
+            .select(selectVideoCardItems)
+            .pipe(startWith([]));
+
+        const customCardItems$ = this.store.select(selectCustomCardItems);
+
+        this.combinedVideoItems$ = combineLatest([
+            customCardItems$,
+            searchResults$,
+        ]).pipe(
+            takeUntil(this.onDestroy),
+            map(([customCardItems, searchResults]) => (searchResults
+                ? [...customCardItems, ...searchResults]
+                : searchResults))
+        );
     }
 
     trackByFn(_index: number, responseItems: VideoItem) {
