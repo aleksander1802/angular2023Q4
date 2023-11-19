@@ -1,9 +1,18 @@
 export interface SearchItem {
     kind: string;
     etag: string;
-    id: string;
+    id: SearchID;
     snippet: Snippet;
     statistics: Statistics;
+}
+
+export interface VideoItem extends Omit<SearchItem, 'id'> {
+    id: string;
+}
+
+export interface SearchID {
+    kind: string;
+    videoId: string;
 }
 
 export interface Snippet {
@@ -42,7 +51,6 @@ export interface Localized {
 export interface Statistics {
     viewCount: string;
     likeCount: string;
-    dislikeCount: string;
     favoriteCount: string;
     commentCount: string;
 }

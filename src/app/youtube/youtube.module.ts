@@ -21,6 +21,7 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
         MetricsComponent,
         DetailedInformationPageComponent,
     ],
+
     imports: [SharedModule, YoutubeRoutingModule],
 })
 export class YoutubeModule {}

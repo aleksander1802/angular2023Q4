@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import {
+    Component, Input, OnChanges, SimpleChanges
+} from '@angular/core';
+import { VideoItem } from 'src/app/youtube/models/search-item.model';
 
 interface Metrics {
     icon: string;
@@ -11,12 +13,12 @@ interface Metrics {
     templateUrl: './metrics.component.html',
     styleUrls: ['./metrics.component.scss'],
 })
-export class MetricsComponent implements OnInit {
+export class MetricsComponent implements OnChanges {
     metricsData: Metrics[] = [];
-    @Input() item: SearchItem | undefined;
+    @Input() item: VideoItem | undefined;
 
-    ngOnInit() {
-        if (this.item) {
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['item'] && this.item) {
             this.metricsData = [
                 {
                     icon: 'visibility',
@@ -27,8 +29,8 @@ export class MetricsComponent implements OnInit {
                     count: this.item.statistics.likeCount,
                 },
                 {
-                    icon: 'thumb_down',
-                    count: this.item.statistics.dislikeCount,
+                    icon: 'star',
+                    count: this.item.statistics.favoriteCount,
                 },
                 {
                     icon: 'comment',

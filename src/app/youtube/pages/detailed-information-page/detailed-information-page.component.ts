@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ResultsService } from '../../services/results/results.service';
-import { SearchItem } from '../../models/search-item.model';
+import { VideoItem } from '../../models/search-item.model';
 
 @Component({
     selector: 'app-detailed-information-page',
@@ -12,7 +12,7 @@ import { SearchItem } from '../../models/search-item.model';
 export class DetailedInformationPageComponent implements OnInit, OnDestroy {
     detailedSub = new Subject<void>();
     currentItemId = '';
-    currentItem: SearchItem | undefined;
+    currentItem: VideoItem | undefined;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -21,27 +21,34 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        this.activatedRoute.params
-            .pipe(takeUntil(this.detailedSub))
-            .subscribe((params) => {
+        this.activatedRoute.params.pipe(takeUntil(this.detailedSub)).subscribe({
+            next: (params) => {
                 this.currentItemId = params['id'];
-                const item = this.resultsService.getItemById(
-                    this.currentItemId
-                );
-
-                if (item) {
-                    this.currentItem = item;
-                } else {
-                    this.router.navigate(['**'], { skipLocationChange: true });
-                }
-            });
+                this.resultsService
+                    .getVideoItemById(this.currentItemId)
+                    .subscribe({
+                        next: ([firstItem]) => {
+                            if (firstItem) {
+                                this.currentItem = firstItem;
+                            } else {
+                                this.router.navigate(['**'], {
+                                    skipLocationChange: true,
+                                });
+                            }
+                        },
+                        error: (error) => {
+                            console.error('Error fetching video item:', error);
+                        },
+                    });
+            },
+        });
     }
 
     backToMain() {
         this.router.navigate(['/youtube']);
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy() {
         this.detailedSub.next();
         this.detailedSub.complete();
     }

@@ -1,5 +1,10 @@
 <div class="notfound">
-    <div class="notfound__logo" routerLink="/">
+    <div
+        class="notfound__logo"
+        (click)="redirectToMainPage()"
+        (keyup)="redirectToMainPageOnEnter($event)"
+        tabindex="0"
+    >
         <img src="assets/images/notfound.svg" alt="notfound logo image" />
     </div>
     <h2 class="notfound__title">Sorry, smth went wrong((</h2>
