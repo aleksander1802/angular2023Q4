@@ -19,8 +19,6 @@ export class ResultsService {
     private apiUrl = URL_SEARCH;
     private apiVideo = URL_VIDEOS;
 
-    isResultsVisible = false;
-
     searchInputValueSubject = new BehaviorSubject<string>('');
 
     public searchResultsSubject$!: Observable<SearchResultResponse[]>;

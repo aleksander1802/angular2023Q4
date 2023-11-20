@@ -25,7 +25,6 @@ export class HeaderSearchBlockComponent implements OnInit, OnDestroy {
             )
             .subscribe((query) => {
                 if (query.length >= 3) {
-                    this.resultsService.isResultsVisible = true;
                     this.resultsService.searchInputValueSubject.next(query);
                 }
             });

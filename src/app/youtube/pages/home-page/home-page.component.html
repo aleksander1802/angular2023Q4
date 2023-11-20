@@ -1,1 +1,9 @@
-<app-search-results *ngIf="isResultsVisible()"></app-search-results>
+<ng-container>
+    <div class="loading" *ngIf="isLoading$ | async; else searchResults">
+        <p>Loading...</p>
+    </div>
+
+    <ng-template #searchResults>
+        <app-search-results></app-search-results>
+    </ng-template>
+</ng-container>

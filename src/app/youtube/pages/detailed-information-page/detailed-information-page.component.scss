@@ -75,5 +75,17 @@
             width: 380px;
             margin: 0 auto;
         }
+        &__button {
+            &-delete {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+
+    &__loading {
+        position: absolute;
+        transform: translate(50%, 50%);
     }
 }

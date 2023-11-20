@@ -16,4 +16,13 @@
     >
         more...
     </app-custom-button>
+
+    <app-custom-button
+        *ngIf="item.custom"
+        class="item__button-delete"
+        additionalClasses="customButtonDelete"
+        (click)="onDeleteCustomCardById(item.id)"
+    >
+        <mat-icon> close </mat-icon>
+    </app-custom-button>
 </div>

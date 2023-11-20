@@ -35,6 +35,16 @@
         <div class="detailed__wrapper-metrics">
             <app-metrics [item]="currentItem"></app-metrics>
         </div>
+
+        <app-custom-button
+            *ngIf="currentItem.custom"
+            class="detailed__wrapper__button-delete"
+            additionalClasses="customButtonDelete"
+            (click)="onDeleteCustomCardById(currentItem.id)"
+        >
+            <mat-icon> close </mat-icon>
+        </app-custom-button>
+
     </div>
 </div>
 
