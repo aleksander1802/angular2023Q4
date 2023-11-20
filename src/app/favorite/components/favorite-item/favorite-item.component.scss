@@ -1,13 +1,13 @@
 :host {
     .favoriteCard {
-        background-color: black;
-        color: white;
+        background: var(--background-favorite);
+        color: var(--favorite-color);
     }
     .favoriteButton {
         color: var(--danger-color);
     }
     .favoriteText {
-        color: white;
+        color: var(--favorite-color);
     }
 }
 
