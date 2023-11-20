@@ -27,6 +27,8 @@ export const videoCardReducer = createReducer(
     ),
     on(
         VideoCardActions.getVideoCardSuccess,
+        VideoCardActions.getNextPageSuccess,
+        VideoCardActions.getPrevPageSuccess,
         (state, { videoCard }): VideoCardsState => {
             const newVideoIds = videoCard.map((item) => item.id);
 

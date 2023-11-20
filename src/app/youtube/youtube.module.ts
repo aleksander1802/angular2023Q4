@@ -5,6 +5,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { DetailedInformationPageComponent } from './pages/detailed-information-page/detailed-information-page.component';
 import { YoutubeRoutingModule } from './youtube-routing.module';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
     declarations: [
@@ -12,6 +13,7 @@ import { YoutubeRoutingModule } from './youtube-routing.module';
         SearchItemComponent,
         HomePageComponent,
         DetailedInformationPageComponent,
+        PaginationComponent,
     ],
 
     imports: [SharedModule, YoutubeRoutingModule],

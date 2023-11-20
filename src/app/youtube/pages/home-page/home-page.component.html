@@ -1,9 +1,13 @@
 <ng-container>
+    
     <div class="loading" *ngIf="isLoading$ | async; else searchResults">
         <p>Loading...</p>
     </div>
-
+    
     <ng-template #searchResults>
+        <app-pagination *ngIf="isVideosItems"></app-pagination>
         <app-search-results></app-search-results>
+        <app-pagination *ngIf="isVideosItems"></app-pagination>
     </ng-template>
+
 </ng-container>

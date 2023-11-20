@@ -35,14 +35,25 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             searchResults$,
         ]).pipe(
             takeUntil(this.onDestroy),
-            map(([customCardItems, searchResults]) => (searchResults
-                ? [...customCardItems, ...searchResults]
-                : searchResults))
+            map(([customCardItems, searchResults]) => {
+                const currentPage = this.getCurrentPage();
+                const isFirstPage = currentPage === 1;
+
+                return isFirstPage
+                    ? [...customCardItems, ...searchResults]
+                    : searchResults;
+            })
         );
     }
 
     trackByFn(_index: number, responseItems: VideoItem) {
         return responseItems.id;
+    }
+
+    private getCurrentPage(): number {
+        const storedPage = localStorage.getItem('currentPage');
+
+        return storedPage ? +storedPage : 1;
     }
 
     ngOnDestroy() {

@@ -15,3 +15,16 @@ export const getVideoCardFailure = createAction(
     VideoCardsActionTypes.GET_SEARCH_RESULTS_FAILURE,
     props<{ error: Error }>()
 );
+
+export const getNextPage = createAction(VideoCardsActionTypes.NEXT_PAGE);
+
+export const getNextPageSuccess = createAction(
+    VideoCardsActionTypes.NEXT_PAGE_SUCCESS,
+    props<{ videoCard: VideoItem[] }>()
+);
+export const getPrevPage = createAction(VideoCardsActionTypes.PREV_PAGE);
+
+export const getPrevPageSuccess = createAction(
+    VideoCardsActionTypes.PREV_PAGE_SUCCESS,
+    props<{ videoCard: VideoItem[] }>()
+);

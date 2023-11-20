@@ -54,8 +54,6 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
     }
 
     private fetchItemById() {
-        console.log('Работает');
-
         this.resultsService.getVideoItemById(this.currentItemId).subscribe({
             next: ([firstItem]) => {
                 if (firstItem) {
