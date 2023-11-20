@@ -30,6 +30,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
         const customCardItems$ = this.store.select(selectCustomCardItems);
 
+        const firstPage = 1;
+
         this.combinedVideoItems$ = combineLatest([
             customCardItems$,
             searchResults$,
@@ -37,11 +39,13 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             takeUntil(this.onDestroy),
             map(([customCardItems, searchResults]) => {
                 const currentPage = this.getCurrentPage();
-                const isFirstPage = currentPage === 1;
+                const isFirstPage = currentPage === firstPage;
 
-                return isFirstPage
+                const combinedItems = isFirstPage
                     ? [...customCardItems, ...searchResults]
                     : searchResults;
+
+                return combinedItems.slice(0, 20);
             })
         );
     }

@@ -67,7 +67,7 @@ export class ResultsService {
     }
 
     private buildSearchParams(query: string, pageToken?: PageTokens) {
-        const queryLimit = '10';
+        const queryLimit = '20';
 
         let params = new HttpParams()
             .set('q', query)
