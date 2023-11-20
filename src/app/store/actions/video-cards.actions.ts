@@ -28,3 +28,13 @@ export const getPrevPageSuccess = createAction(
     VideoCardsActionTypes.PREV_PAGE_SUCCESS,
     props<{ videoCard: VideoItem[] }>()
 );
+
+export const addToFavorites = createAction(
+    VideoCardsActionTypes.ADD_TO_FAVORITES,
+    props<{ videoId: string }>()
+);
+
+export const removeFromFavorites = createAction(
+    VideoCardsActionTypes.REMOVE_FROM_FAVORITES,
+    props<{ videoId: string }>()
+);

@@ -16,6 +16,7 @@ import { customCardReducer } from '../store/reducers/custom-card.reducer';
 import { rootReducer } from '../store/state.model';
 import { videoCardReducer } from '../store/reducers/video-cards.reducer';
 import { VideoCardEffects } from '../store/effects/video-cards.effects';
+import { FavoriteModule } from '../favorite/favorite.module';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { VideoCardEffects } from '../store/effects/video-cards.effects';
     imports: [
         SharedModule,
         LogoComponent,
+        FavoriteModule,
         AppRoutingModule,
         ReactiveFormsModule,
         HttpClientModule,

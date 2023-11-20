@@ -26,4 +26,12 @@ export class LoginInformationBlockComponent implements OnInit {
             this.router.navigate(['/login']);
         }
     }
+
+    toFormCreation() {
+        if (this.isLoggedIn) {
+            this.router.navigate(['/admin']);
+        } else {
+            this.router.navigate(['/login']);
+        }
+    }
 }

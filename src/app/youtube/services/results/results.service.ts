@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import {
-    catchError, map, mergeMap, switchMap
+    BehaviorSubject, Observable, of, throwError
+} from 'rxjs';
+import {
+    catchError,
+    map,
+    mergeMap,
+    switchMap,
+    withLatestFrom,
 } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
+import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
 import { URL_SEARCH, URL_VIDEOS } from '../../../../../constants';
 import {
     PageTokens,
@@ -115,26 +122,46 @@ export class ResultsService {
         return this.getSearchResults({ prevPageToken: token });
     }
 
-    getGenerateConcatenatedVideoIds(items: SearchItem[]): string {
+    getGenerateConcatenatedVideoIds(items: SearchItem[]) {
         return items.map(({ id }) => id.videoId).join(',');
     }
 
-    getAllVideoItemsById(id: string): Observable<VideoItem[]> {
+    getAllVideoItemsById(id: string) {
         const params = new HttpParams()
             .set('part', 'snippet,statistics')
             .set('id', id);
+
         return this.httpClient
             .get<SearchVideoResponse>(this.apiVideo, { params })
             .pipe(
-                map((video) => video.items),
-                catchError((error) => {
-                    console.error('Error fetching video results:', error);
-                    return throwError(() => 'Failed to fetch video results');
-                })
+                switchMap((video) => this.addFavoriteFieldToVideoItems(video.items)),
+                catchError((error) => this.handleVideoItemsError(error))
             );
     }
 
-    getVideoItemById(id: string): Observable<VideoItem[]> {
+    private addFavoriteFieldToVideoItems(videoItems: VideoItem[]) {
+        return of(videoItems).pipe(
+            withLatestFrom(this.store.select(selectVideoCardFavoriteIds)),
+            map(([items, favoriteIds]) => this.mapVideoItemsWithFavoriteField(items, favoriteIds))
+        );
+    }
+
+    private mapVideoItemsWithFavoriteField(
+        videoItems: VideoItem[],
+        favoriteIds: string[]
+    ) {
+        return videoItems.map((item) => ({
+            ...item,
+            favorite: favoriteIds.includes(item.id) || false,
+        }));
+    }
+
+    private handleVideoItemsError(error: Error) {
+        console.error('Error fetching video results:', error);
+        return throwError(() => 'Failed to fetch video results');
+    }
+
+    getVideoItemById(id: string) {
         const params = new HttpParams()
             .set('part', 'snippet,statistics')
             .set('id', id);
@@ -142,10 +169,20 @@ export class ResultsService {
         return this.httpClient
             .get<SearchVideoResponse>(this.apiVideo, { params })
             .pipe(
-                map((videoResponse) => videoResponse.items),
+                withLatestFrom(this.store.select(selectVideoCardFavoriteIds)),
+                switchMap(([videoResponse, favoriteIds]) => {
+                    const videoItems = videoResponse.items;
+
+                    const videosWithFavorites = videoItems.map((item) => ({
+                        ...item,
+                        favorite: favoriteIds.includes(item.id) || false,
+                    }));
+
+                    return of(videosWithFavorites);
+                }),
                 catchError((error) => {
-                    console.error('Error fetching search results:', error);
-                    return throwError(() => 'Failed to fetch search results');
+                    console.error('Error fetching video results:', error);
+                    return throwError(() => 'Failed to fetch video results');
                 })
             );
     }

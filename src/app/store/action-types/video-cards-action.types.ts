@@ -11,4 +11,7 @@ export enum VideoCardsActionTypes {
     PREV_PAGE_SUCCESS = '[Search results page API] Go to prev page success',
     PREV_PAGE_FAILURE = '[Search results page API] Go to prev page failure',
 
+    ADD_TO_FAVORITES = '[Video Cards] Add to Favorites',
+
+    REMOVE_FROM_FAVORITES = '[Video Cards] Remove from Favorites',
 }

@@ -1,8 +1,7 @@
 <div
     *ngIf="item"
-    class="item"
+    class="item favoriteCard"
     [appColorByDate]="item.snippet.publishedAt"
-    [ngClass]="{ favoriteCard: isFavorite$ | async }"
 >
     <div class="item__image">
         <img
@@ -13,10 +12,10 @@
 
     <app-metrics
         [item]="item"
-        [ngClass]="{ favoriteText: isFavorite$ | async }"
+        [ngClass]="{ favoriteText: item.favorite }"
     ></app-metrics>
 
-    <div class="item__title" [ngClass]="{ favoriteText: isFavorite$ | async }">
+    <div class="item__title" [ngClass]="{ favoriteText: item.favorite }">
         {{ item.snippet.title }}
     </div>
 
@@ -28,25 +27,15 @@
     </app-custom-button>
 
     <app-custom-button
-        *ngIf="item.custom"
-        class="item__button-delete"
-        additionalClasses="customButtonDelete"
-        (click)="onDeleteCustomCardById(item.id)"
-    >
-        <mat-icon> close </mat-icon>
-    </app-custom-button>
-
-    <app-custom-button
-        *ngIf="!item.custom"
         class="item__button-favorite"
         type="button"
         additionalClasses="favoritePathButton favoritePathButton-item"
         title="Favorite page"
-        (click)="onFavoriteCardToggle(item)"
+        (click)="removeFavoriteCard(item)"
     >
         <mat-icon
             class="header__favorite__icon"
-            [ngClass]="{ favoriteButton: isFavorite$ | async }"
+            [ngClass]="{ favoriteButton: item.favorite }"
             >bookmark</mat-icon
         >
     </app-custom-button>

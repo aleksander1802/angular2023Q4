@@ -1,3 +1,16 @@
+:host {
+    .favoriteCard {
+        background-color: black;
+        color: white;
+    }
+    .favoriteButton {
+        color: var(--danger-color);
+    }
+    .favoriteText {
+        color: white;
+    }
+}
+
 .detailed {
     display: flex;
     position: relative;
@@ -34,6 +47,7 @@
         justify-content: space-between;
         padding: 2rem;
         height: auto;
+        position: relative;
         &-titledate {
             display: flex;
             flex-direction: row;
@@ -76,7 +90,8 @@
             margin: 0 auto;
         }
         &__button {
-            &-delete {
+            &-delete,
+            &-favorite {
                 position: absolute;
                 top: 0;
                 right: 0;

@@ -1,11 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, first, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { deleteCustomCard } from 'src/app/store/actions/custom-card.actions';
 import { selectCustomCardById } from 'src/app/store/selectors/custom-card.selectors';
-import { VideoItem } from '../../models/search-item.model';
+import { deleteCustomCard } from 'src/app/store/actions/custom-card.actions';
+import { first, map, startWith } from 'rxjs/operators';
+import {
+    removeFromFavorites,
+    addToFavorites,
+} from 'src/app/store/actions/video-cards.actions';
+import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
 import { ResultsService } from '../../services/results/results.service';
+import { VideoItem } from '../../models/search-item.model';
 
 @Component({
     selector: 'app-detailed-information-page',
@@ -13,9 +19,18 @@ import { ResultsService } from '../../services/results/results.service';
     styleUrls: ['./detailed-information-page.component.scss'],
 })
 export class DetailedInformationPageComponent implements OnInit, OnDestroy {
-    detailedSub = new Subject<void>();
+    private detailedSub = new Subject<void>();
     currentItemId = '';
     currentItem: VideoItem | undefined;
+    isFavorite$ = this.store.select(selectVideoCardFavoriteIds).pipe(
+        map((favoriteIds) => {
+            if (this.currentItem) {
+                return favoriteIds.includes(this.currentItem.id) || false;
+            }
+            return false;
+        }),
+        startWith(false)
+    );
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -91,6 +106,24 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
 
     backToMain() {
         this.router.navigate(['/youtube']);
+    }
+
+    onFavoriteCardToggle(item: VideoItem) {
+        const videoId = item.id;
+
+        if (item.favorite) {
+            this.store.dispatch(removeFromFavorites({ videoId }));
+
+            if (this.currentItem) {
+                this.currentItem.favorite = false;
+            }
+        } else {
+            this.store.dispatch(addToFavorites({ videoId }));
+
+            if (this.currentItem) {
+                this.currentItem.favorite = true;
+            }
+        }
     }
 
     ngOnDestroy() {

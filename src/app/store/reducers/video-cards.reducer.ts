@@ -49,5 +49,49 @@ export const videoCardReducer = createReducer(
             ...state,
             isLoading: false,
         };
+    }),
+    on(
+        VideoCardActions.getNextPage,
+        (state): VideoCardsState => ({
+            ...state,
+            isLoading: true,
+        })
+    ),
+
+    on(
+        VideoCardActions.getPrevPage,
+        (state): VideoCardsState => ({
+            ...state,
+            isLoading: true,
+        })
+    ),
+
+    on(VideoCardActions.addToFavorites, (state, { videoId }) => {
+        const updatedVideoItems = state.videoItems.map((item) => {
+            if (item.id === videoId) {
+                return { ...item, favorite: true };
+            }
+            return item;
+        });
+
+        return {
+            ...state,
+            favoriteIds: [...state.favoriteIds, videoId],
+            videoItems: updatedVideoItems,
+        };
+    }),
+    on(VideoCardActions.removeFromFavorites, (state, { videoId }) => {
+        const updatedVideoItems = state.videoItems.map((item) => {
+            if (item.id === videoId) {
+                return { ...item, favorite: false };
+            }
+            return item;
+        });
+
+        return {
+            ...state,
+            favoriteIds: state.favoriteIds.filter((id) => id !== videoId),
+            videoItems: updatedVideoItems,
+        };
     })
 );
