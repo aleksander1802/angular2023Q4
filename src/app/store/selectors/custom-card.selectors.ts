@@ -12,3 +12,8 @@ export const selectCustomCardById = (cardId: string) => createSelector(
     selectCustomCardItems,
     (customItems) => customItems.find((card) => card.id === cardId)
 );
+
+export const selectIsCustomCardSubmitted = createSelector(
+    selectCustomCardsState,
+    (state) => state.isSubmitted
+);

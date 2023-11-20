@@ -8,6 +8,7 @@ import { ColorByDateDirective } from './directives/colorByDate/color-by-date.dir
 import { FilteringPipe } from './pipes/filtering/filtering.pipe';
 import { SortingPipe } from './pipes/sorting/sorting.pipe';
 import { MetricsComponent } from './components/metrics/metrics.component';
+import { CyberButtonComponent } from './components/cyber-button/cyber-button.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { MetricsComponent } from './components/metrics/metrics.component';
         SortingPipe,
         FilteringPipe,
         ColorByDateDirective,
+        CyberButtonComponent,
     ],
     imports: [CommonModule, MaterialModule, RouterModule],
     exports: [
@@ -27,6 +29,7 @@ import { MetricsComponent } from './components/metrics/metrics.component';
         SortingPipe,
         FilteringPipe,
         ColorByDateDirective,
+        CyberButtonComponent,
     ],
 })
 export class SharedModule {}

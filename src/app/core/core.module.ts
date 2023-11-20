@@ -17,6 +17,7 @@ import { rootReducer } from '../store/state.model';
 import { videoCardReducer } from '../store/reducers/video-cards.reducer';
 import { VideoCardEffects } from '../store/effects/video-cards.effects';
 import { FavoriteModule } from '../favorite/favorite.module';
+import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { FavoriteModule } from '../favorite/favorite.module';
         HeaderSearchBlockComponent,
         FilteringCriteriaBlockComponent,
         AdminPageComponent,
+        CustomModalComponent,
     ],
     providers: [httpInterceptorProviders],
     imports: [

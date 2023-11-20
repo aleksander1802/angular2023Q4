@@ -1,10 +1,13 @@
+:host {
+    position: relative;
+}
+
 .admin {
     max-width: 600px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
     background-color: #efefef;
     border-radius: 10px;
-
     &__title {
         margin-bottom: 1rem;
     }
@@ -32,7 +35,6 @@
     &__button {
         display: flex;
         justify-content: space-between;
-        
     }
 
     &__subform {
@@ -44,7 +46,7 @@
         margin-top: 1rem;
         &__button {
             align-self: center;
-            width: 100%;       
+            width: 100%;
         }
     }
 }

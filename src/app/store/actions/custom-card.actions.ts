@@ -30,3 +30,7 @@ export const deleteCustomCardFailure = createAction(
     CustomCardActionTypes.DELETE_FAILURE,
     props<{ error: Error }>()
 );
+
+export const updateCustomCardStatus = createAction(
+    CustomCardActionTypes.UPDATE_IS_SUBMITTING
+);

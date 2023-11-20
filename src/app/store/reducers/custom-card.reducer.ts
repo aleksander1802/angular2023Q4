@@ -4,10 +4,12 @@ import * as CustomCardActions from '../actions/custom-card.actions';
 
 export interface CustomCardsState {
     customItems: VideoItem[];
+    isSubmitted: boolean;
 }
 
 const initialCustomCardsState: CustomCardsState = {
     customItems: [],
+    isSubmitted: false,
 };
 
 export const customCardReducer = createReducer(
@@ -16,8 +18,8 @@ export const customCardReducer = createReducer(
         CustomCardActions.createCustomCard,
         (state, { customCard }): CustomCardsState => ({
             ...state,
-
             customItems: [...state.customItems, customCard],
+            isSubmitted: true,
         })
     ),
     on(
@@ -31,6 +33,7 @@ export const customCardReducer = createReducer(
 
         return {
             ...state,
+            isSubmitted: false,
         };
     }),
     on(
@@ -42,9 +45,15 @@ export const customCardReducer = createReducer(
 
             return {
                 ...state,
-
                 customItems: updatedCustomItems,
             };
         }
+    ),
+    on(
+        CustomCardActions.updateCustomCardStatus,
+        (state): CustomCardsState => ({
+            ...state,
+            isSubmitted: false,
+        })
     )
 );

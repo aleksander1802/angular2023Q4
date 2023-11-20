@@ -122,3 +122,19 @@
         margin-top: 1rem;
     }
 }
+
+.closeCustomModal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: black;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    &:hover {
+        color: white;
+    }
+}

@@ -6,4 +6,6 @@ export enum CustomCardActionTypes {
     DELETE = '[Admin page] Delete custom card',
     DELETE_SUCCESS = '[Admin page] Delete custom card success',
     DELETE_FAILURE = '[Admin page] Delete custom card failure',
+
+    UPDATE_IS_SUBMITTING = '[Admin page] Update custom card status',
 }
