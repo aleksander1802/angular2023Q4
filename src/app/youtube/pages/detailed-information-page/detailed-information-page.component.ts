@@ -10,6 +10,7 @@ import {
     addToFavorites,
 } from 'src/app/store/actions/video-cards.actions';
 import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
+import { Location } from '@angular/common';
 import { ResultsService } from '../../services/results/results.service';
 import { VideoItem } from '../../models/search-item.model';
 
@@ -36,7 +37,8 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private resultsService: ResultsService,
-        private store: Store
+        private store: Store,
+        private location: Location
     ) {}
 
     ngOnInit() {
@@ -105,7 +107,7 @@ export class DetailedInformationPageComponent implements OnInit, OnDestroy {
     }
 
     backToMain() {
-        this.router.navigate(['/youtube']);
+        this.location.back();
     }
 
     onFavoriteCardToggle(item: VideoItem) {
