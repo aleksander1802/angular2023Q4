@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { VideoItem } from 'src/app/youtube/models/search-item.model';
-import * as VideoCardActions from 'src/app/store/actions/video-cards.actions';
+import * as VideoCardActions from '../actions/video-cards.actions';
 
 export interface VideoCardsState {
     videoItems: VideoItem[];

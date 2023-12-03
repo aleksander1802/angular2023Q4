@@ -10,8 +10,8 @@ import {
 } from 'rxjs';
 import { VideoItem } from 'src/app/youtube/models/search-item.model';
 import { SearchVideoResponse } from 'src/app/youtube/models/search-response.model';
-import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
 import { Store } from '@ngrx/store';
+import { selectVideoCardFavoriteIds } from '../../../store/selectors/video-cards.selectors';
 import { URL_VIDEOS } from '../../../../../constants';
 
 @Injectable({

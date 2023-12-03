@@ -5,8 +5,8 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { VideoItem } from 'src/app/youtube/models/search-item.model';
 import { CustomCardFormValue } from 'src/app/youtube/models/custom-card.model';
-import { createCustomCard } from 'src/app/store/actions/custom-card.actions';
 import { Store } from '@ngrx/store';
+import { createCustomCard } from '../../../store/actions/custom-card.actions';
 import { currentDateValidator } from '../../validators/future-date.validator';
 import { urlValidator } from '../../validators/url-link.validator';
 

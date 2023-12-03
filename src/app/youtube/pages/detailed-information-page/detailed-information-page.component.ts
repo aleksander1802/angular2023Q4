@@ -9,8 +9,8 @@ import {
     removeFromFavorites,
     addToFavorites,
 } from 'src/app/store/actions/video-cards.actions';
-import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
 import { Location } from '@angular/common';
+import { selectVideoCardFavoriteIds } from '../../../store/selectors/video-cards.selectors';
 import { ResultsService } from '../../services/results/results.service';
 import { VideoItem } from '../../models/search-item.model';
 

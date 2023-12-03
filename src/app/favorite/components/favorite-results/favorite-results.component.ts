@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subject, of } from 'rxjs';
 import { map, switchMap, takeUntil } from 'rxjs/operators';
-import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
 import { VideoItem } from 'src/app/youtube/models/search-item.model';
 import { FilterService } from 'src/app/youtube/services/filter/filter.service';
 import { SortService } from 'src/app/youtube/services/sort/sort.service';
+import { selectVideoCardFavoriteIds } from '../../../store/selectors/video-cards.selectors';
 import { FavoritesService } from '../../services/favorites/favorites.service';
 
 @Component({

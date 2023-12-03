@@ -3,10 +3,9 @@ import { Store } from '@ngrx/store';
 import {
     Subject, debounceTime, distinctUntilChanged, takeUntil
 } from 'rxjs';
-import { ResultsService } from 'src/app/youtube/services/results/results.service';
-
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { getVideoCard } from 'src/app/store/actions/video-cards.actions';
+import { getVideoCard } from '../../../store/actions/video-cards.actions';
+import { AuthService } from '../../../auth/services/auth.service';
+import { ResultsService } from '../../../youtube/services/results/results.service';
 
 @Component({
     selector: 'app-header-search-block',

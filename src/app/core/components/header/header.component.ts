@@ -11,6 +11,10 @@ export class HeaderComponent {
 
     constructor(private router: Router) {}
 
+    toggleSortSetting() {
+        this.isSortSettingsVisible = !this.isSortSettingsVisible;
+    }
+
     navigateToFavoritePage() {
         this.router.navigate(['/favorite']);
     }

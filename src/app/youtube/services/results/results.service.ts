@@ -11,7 +11,7 @@ import {
 } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
+import { selectVideoCardFavoriteIds } from '../../../store/selectors/video-cards.selectors';
 import { URL_SEARCH, URL_VIDEOS } from '../../../../../constants';
 import {
     PageTokens,
