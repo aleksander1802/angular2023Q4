@@ -22,6 +22,10 @@ export class FavoritesService {
 
     constructor(private httpClient: HttpClient, private store: Store) {}
 
+    get apiVideoLink() {
+        return this.apiVideo;
+    }
+
     getFavoriteVideoItemsById(id: string) {
         const params = new HttpParams()
             .set('part', 'snippet,statistics')
