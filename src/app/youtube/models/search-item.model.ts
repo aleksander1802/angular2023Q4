@@ -1,13 +1,15 @@
 export interface SearchItem {
-    kind: string;
-    etag: string;
+    kind?: string;
+    etag?: string;
     id: SearchID;
     snippet: Snippet;
-    statistics: Statistics;
+    statistics?: Statistics;
 }
 
 export interface VideoItem extends Omit<SearchItem, 'id'> {
     id: string;
+    custom?: boolean;
+    favorite?: boolean;
 }
 
 export interface SearchID {
@@ -17,16 +19,16 @@ export interface SearchID {
 
 export interface Snippet {
     publishedAt: string;
-    channelId: string;
+    channelId?: string;
     title: string;
     description: string;
     thumbnails: Thumbnails;
-    channelTitle: string;
+    channelTitle?: string;
     tags: string[];
-    categoryId: string;
-    liveBroadcastContent: string;
-    localized: Localized;
-    defaultAudioLanguage: string;
+    categoryId?: string;
+    liveBroadcastContent?: string;
+    localized?: Localized;
+    defaultAudioLanguage?: string;
 }
 
 export interface Thumbnails {

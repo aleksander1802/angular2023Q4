@@ -1,0 +1,21 @@
+<ng-container *ngIf="favoriteVideoItems$ | async as favoriteVideoItems">
+    <div
+        class="favorite__notAdded"
+        *ngIf="favoriteVideoItems.length === 0; else favoriteItems"
+    >
+        <p>You haven't added your favorite video yet.</p>
+    </div>
+
+    <ng-template #favoriteItems>
+        <app-search-item
+            class="items"
+            *ngFor="
+                let item of favoriteVideoItems
+                    | filtering : filterService.filterValue
+                    | sorting : sortService.sortBy : sortService.sortOrder;
+                trackBy: trackByFn
+            "
+            [item]="item"
+        ></app-search-item>
+    </ng-template>
+</ng-container>

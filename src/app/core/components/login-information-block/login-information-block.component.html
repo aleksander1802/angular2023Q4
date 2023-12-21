@@ -1,11 +1,18 @@
 <div class="header__container-account">
     <div class="account">
         <span> {{ authService.currentLogin }} </span>
-        <div class="account__icon">
+        <div
+            class="account__icon"
+            (click)="toFormCreation()"
+            (keyup.enter)="toFormCreation()"
+            tabindex="0"
+            title="Admin page"
+        >
             <mat-icon>account_circle</mat-icon>
         </div>
         <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
-            <div class="account__icon"
+            <div
+                class="account__icon"
                 (click)="toggleLoginStatus()"
                 (keyup.enter)="toggleLoginStatus()"
                 tabindex="0"
@@ -15,7 +22,8 @@
             </div>
         </ng-container>
         <ng-template #loggedInTemplate>
-            <div class="account__icon"
+            <div
+                class="account__icon"
                 (click)="toggleLoginStatus()"
                 (keyup.enter)="toggleLoginStatus()"
                 tabindex="0"

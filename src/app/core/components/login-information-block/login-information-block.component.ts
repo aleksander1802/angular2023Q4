@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
     selector: 'app-login-information-block',
@@ -22,6 +22,14 @@ export class LoginInformationBlockComponent implements OnInit {
         if (this.isLoggedIn) {
             this.authService.logout();
             this.router.navigate(['/login']);
+        } else {
+            this.router.navigate(['/login']);
+        }
+    }
+
+    toFormCreation() {
+        if (this.isLoggedIn) {
+            this.router.navigate(['/admin']);
         } else {
             this.router.navigate(['/login']);
         }

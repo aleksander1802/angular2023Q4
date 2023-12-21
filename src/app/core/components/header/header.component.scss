@@ -1,7 +1,8 @@
 .container {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr auto 1fr;
     justify-items: end;
+
     padding-top: 1rem;
     padding-bottom: 1rem;
     gap: 2rem;
@@ -20,6 +21,11 @@
             gap: 15px;
             justify-content: center;
             align-items: center;
+        }
+    }
+    &__favorite {
+        &__icon {
+            display: flex;
         }
     }
 }

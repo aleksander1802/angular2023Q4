@@ -1,0 +1,28 @@
+<div class="custom" *ngIf="isSubmitted$ | async">
+    <div class="custom__modal">
+        <div class="custom__modal__description">
+            <h2>Congratulations!</h2>
+            <p>The card was successfully created.</p>
+            <p>You can return to the main page or create a new card.</p>
+        </div>
+
+        <div class="custom__modal__button-main">
+            <app-cyber-button
+                [buttonText]="'Back to Main'"
+                (click)="toMainPage()"
+            ></app-cyber-button>
+            <app-cyber-button
+                [buttonText]="'Create new'"
+                (click)="onCloseModal()"
+            ></app-cyber-button>
+        </div>
+
+        <app-custom-button
+            class="custom__modal__button-close"
+            additionalClasses="closeCustomModal"
+            (click)="onCloseModal()"
+        >
+            <mat-icon>close</mat-icon>
+        </app-custom-button>
+    </div>
+</div>

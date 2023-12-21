@@ -19,12 +19,22 @@ export class AuthService {
     login(username: string, password: string): boolean {
         if (username.trim() && password.trim()) {
             localStorage.setItem(this.authTokenKey, 'fake-auth-token12345678');
-            localStorage.setItem(this.usernameKey, username);
+
+            this.setUsernameInLocalStorage(username);
             this.currentLogin = username;
             this.isLoggedInSubject.next(true);
             return true;
         }
         return false;
+    }
+
+    getUsernameKey() {
+        return this.usernameKey;
+    }
+
+    setUsernameInLocalStorage(username: string) {
+        const key = this.getUsernameKey();
+        localStorage.setItem(key, username);
     }
 
     logout() {

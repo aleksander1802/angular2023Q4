@@ -1,0 +1,53 @@
+<div
+    *ngIf="item"
+    class="item"
+    [appColorByDate]="item.snippet.publishedAt"
+    [ngClass]="{ favoriteCard: isFavorite$ | async }"
+>
+    <div class="item__image">
+        <img
+            [src]="item.snippet.thumbnails.medium.url"
+            [alt]="item.snippet.title"
+        />
+    </div>
+
+    <app-metrics
+        [item]="item"
+        [ngClass]="{ favoriteText: isFavorite$ | async }"
+    ></app-metrics>
+
+    <div class="item__title" [ngClass]="{ favoriteText: isFavorite$ | async }">
+        {{ item.snippet.title }}
+    </div>
+
+    <app-custom-button
+        additionalClasses="item__button"
+        (click)="onOpenDetailedPageById(item.id)"
+    >
+        more...
+    </app-custom-button>
+
+    <app-custom-button
+        *ngIf="item.custom"
+        class="item__button-delete"
+        additionalClasses="customButtonDelete"
+        (click)="onDeleteCustomCardById(item.id)"
+    >
+        <mat-icon> close </mat-icon>
+    </app-custom-button>
+
+    <app-custom-button
+        *ngIf="!item.custom"
+        class="item__button-favorite"
+        type="button"
+        additionalClasses="favoritePathButton favoritePathButton-item"
+        title="Favorite page"
+        (click)="onFavoriteCardToggle(item)"
+    >
+        <mat-icon
+            class="header__favorite__icon"
+            [ngClass]="{ favoriteButton: isFavorite$ | async }"
+            >bookmark</mat-icon
+        >
+    </app-custom-button>
+</div>

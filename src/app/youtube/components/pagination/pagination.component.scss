@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem auto;
+    &__current {        
+        padding: 0 1rem;
+        font-size: 1.4rem;
+        color: #ffffff;
+        background-color: var(--primary);
+        border-radius: 5px;
+        cursor: default;
+        text-align: center;
+    }
+}
+
+mat-icon {
+    display: flex;
+}

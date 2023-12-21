@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import {
     Subject, debounceTime, distinctUntilChanged, takeUntil
 } from 'rxjs';
-import { ResultsService } from 'src/app/youtube/services/results/results.service';
+import { getVideoCard } from '../../../store/actions/video-cards.actions';
+import { AuthService } from '../../../auth/services/auth.service';
+import { ResultsService } from '../../../youtube/services/results/results.service';
 
 @Component({
     selector: 'app-header-search-block',
@@ -13,9 +16,14 @@ export class HeaderSearchBlockComponent implements OnInit, OnDestroy {
     searchQuery = '';
     private destroy$ = new Subject<void>();
     private searchSubject = new Subject<string>();
+    private minQueryLength = 3;
     private debounceDelay = 1000;
 
-    constructor(private resultsService: ResultsService) {}
+    constructor(
+        private authService: AuthService,
+        private resultsService: ResultsService,
+        private store: Store
+    ) {}
     ngOnInit() {
         this.searchSubject
             .pipe(
@@ -24,9 +32,12 @@ export class HeaderSearchBlockComponent implements OnInit, OnDestroy {
                 takeUntil(this.destroy$)
             )
             .subscribe((query) => {
-                if (query.length >= 3) {
-                    this.resultsService.isResultsVisible = true;
+                if (
+                    query.length >= this.minQueryLength
+                    && this.authService.isLoggedIn()
+                ) {
                     this.resultsService.searchInputValueSubject.next(query);
+                    this.store.dispatch(getVideoCard());
                 }
             });
     }

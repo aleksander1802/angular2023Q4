@@ -1,7 +1,11 @@
+:host {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 1rem;
+}
 .account {
     display: flex;
-    gap: 10px;
-    padding-top: 1rem;
+    gap: 10px;    
     align-items: center;
     cursor: default;
     &__icon {

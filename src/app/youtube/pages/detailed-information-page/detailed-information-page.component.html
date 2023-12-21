@@ -1,4 +1,8 @@
-<div class="detailed">
+<div
+    class="detailed"
+    *ngIf="currentItem"
+    [ngClass]="{ favoriteCard: isFavorite$ | async }"
+>
     <app-custom-button
         additionalClasses="detailed__back-button"
         (click)="backToMain()"
@@ -8,35 +12,67 @@
 
     <div class="detailed__image">
         <img
-            [src]="currentItem?.snippet?.thumbnails?.standard?.url"
-            [alt]="currentItem?.snippet?.title"
+            [src]="currentItem.snippet.thumbnails.standard.url"
+            [alt]="currentItem.snippet.title"
         />
     </div>
 
     <div
         class="detailed__wrapper"
-        [appColorByDate]="currentItem?.snippet?.publishedAt || ''"
+        [appColorByDate]="currentItem.snippet.publishedAt || ''"
     >
         <div class="detailed__wrapper-titledate">
-            <h1 class="detailed__wrapper-title">
-                {{ currentItem?.snippet?.title }}
+            <h1
+                class="detailed__wrapper-title"
+                [ngClass]="{ favoriteText: isFavorite$ | async }"
+            >
+                {{ currentItem.snippet.title }}
             </h1>
-            <div class="detailed__wrapper-date">
-                {{
-                    currentItem?.snippet?.publishedAt
-                        | date : "fullDate"
-                }}
+            <div
+                class="detailed__wrapper-date"
+                [ngClass]="{ favoriteText: isFavorite$ | async }"
+            >
+                {{ currentItem.snippet.publishedAt | date : "fullDate" }}
             </div>
         </div>
         <div class="detailed__wrapper-about">
             <div class="detailed__wrapper-subtitle">Description:</div>
-            <div class="detailed__wrapper-description">
-                {{ currentItem?.snippet?.description }}
+            <div
+                class="detailed__wrapper-description"
+                [ngClass]="{ favoriteText: isFavorite$ | async }"
+            >
+                {{ currentItem.snippet.description }}
             </div>
         </div>
 
         <div class="detailed__wrapper-metrics">
             <app-metrics [item]="currentItem"></app-metrics>
         </div>
+
+        <app-custom-button
+            *ngIf="currentItem.custom"
+            class="detailed__wrapper__button-delete"
+            additionalClasses="customButtonDelete"
+            (click)="onDeleteCustomCardById(currentItem.id)"
+        >
+            <mat-icon> close </mat-icon>
+        </app-custom-button>
+
+        <app-custom-button
+            *ngIf="!currentItem.custom"
+            class="detailed__wrapper__button-favorite"
+            type="button"
+            additionalClasses="favoritePathButton favoritePathButton-item"
+            title="Favorite"
+            (click)="onFavoriteCardToggle(currentItem)"
+        >
+            <mat-icon
+                class="header__favorite__icon"
+                [ngClass]="{ favoriteButton: isFavorite$ | async }"
+                >bookmark</mat-icon
+            >
+        </app-custom-button>
     </div>
 </div>
+
+<div *ngIf="!currentItem" class="detailed__loading">Loading...</div>

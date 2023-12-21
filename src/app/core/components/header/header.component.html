@@ -8,16 +8,23 @@
 
                 <app-custom-button
                     additionalClasses="settings__button"
-                    (click)="isSortSettingsVisible = !isSortSettingsVisible"
+                    (click)="toggleSortSetting()"
                 >
                     <mat-icon> tune </mat-icon>
                 </app-custom-button>
             </div>
 
-            <app-filtering-criteria-block
-                *ngIf="isSortSettingsVisible"
-            ></app-filtering-criteria-block>
+            <app-filtering-criteria-block *ngIf="isSortSettingsVisible">
+            </app-filtering-criteria-block>
         </div>
+
+        <app-custom-button
+            additionalClasses="favoritePathButton favoritePathButton-header"
+            title="Favorite page"
+            (click)="navigateToFavoritePage()"
+        >
+            <mat-icon class="header__favorite__icon">favorite</mat-icon>
+        </app-custom-button>
 
         <app-login-information-block></app-login-information-block>
     </div>

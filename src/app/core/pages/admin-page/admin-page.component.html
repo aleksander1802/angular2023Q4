@@ -69,7 +69,11 @@
                 *ngIf="imageLink?.touched && imageLink?.invalid"
             >
                 <small *ngIf="getError('imageLink', 'required')">
-                    Please enter a link to the image
+                    Please enter a link to the image.
+                </small>
+
+                <small *ngIf="getError('imageLink', 'invalidUrl')">
+                    Link is invalid. Please enter a valid link.
                 </small>
             </div>
         </div>
@@ -92,7 +96,11 @@
                 *ngIf="videoLink?.touched && videoLink?.invalid"
             >
                 <small *ngIf="getError('videoLink', 'required')">
-                    Please enter a link to the video
+                    Please enter a link to the video.
+                </small>
+
+                <small *ngIf="getError('videoLink', 'invalidUrl')">
+                    Link is invalid. Please enter a valid link.
                 </small>
             </div>
         </div>
@@ -173,7 +181,7 @@
                 Reset
             </app-custom-button>
             <app-custom-button
-                [disabled]="form.invalid || isSubmitted"
+                [disabled]="form.invalid"
                 additionalClasses="admin__button-submit"
                 type="submit"
             >
@@ -182,3 +190,5 @@
         </div>
     </form>
 </div>
+
+<app-custom-modal></app-custom-modal>

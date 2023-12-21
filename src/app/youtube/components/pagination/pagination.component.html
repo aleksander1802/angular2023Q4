@@ -1,0 +1,11 @@
+<div class="pagination">
+    <app-custom-button (click)="prevPage()" [disabled]="isPrevPageButtonDisable">
+        <mat-icon><span class="material-symbols-outlined"> first_page </span></mat-icon>
+    </app-custom-button>
+
+    <div class="pagination__current">{{ currentPage }}</div>
+
+    <app-custom-button (click)="nextPage()" [disabled]="isNextPageButtonDisable">
+        <mat-icon><span class="material-symbols-outlined"> last_page </span></mat-icon>
+    </app-custom-button>
+</div>
