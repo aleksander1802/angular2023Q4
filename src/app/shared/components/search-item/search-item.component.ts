@@ -7,8 +7,8 @@ import {
     removeFromFavorites,
     addToFavorites,
 } from 'src/app/store/actions/video-cards.actions';
+import { selectVideoCardFavoriteIds } from 'src/app/store/selectors/video-cards.selectors';
 import { VideoItem } from 'src/app/youtube/models/search-item.model';
-import { selectVideoCardFavoriteIds } from '../../../../store/selectors/video-cards.selectors';
 
 @Component({
     selector: 'app-search-item',

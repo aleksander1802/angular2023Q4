@@ -9,6 +9,7 @@ import { FilteringPipe } from './pipes/filtering/filtering.pipe';
 import { SortingPipe } from './pipes/sorting/sorting.pipe';
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { CyberButtonComponent } from './components/cyber-button/cyber-button.component';
+import { SearchItemComponent } from './components/search-item/search-item.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { CyberButtonComponent } from './components/cyber-button/cyber-button.com
         FilteringPipe,
         ColorByDateDirective,
         CyberButtonComponent,
+        SearchItemComponent,
     ],
     imports: [CommonModule, MaterialModule, RouterModule],
     exports: [
@@ -30,6 +32,7 @@ import { CyberButtonComponent } from './components/cyber-button/cyber-button.com
         FilteringPipe,
         ColorByDateDirective,
         CyberButtonComponent,
+        SearchItemComponent,
     ],
 })
 export class SharedModule {}

@@ -7,7 +7,7 @@
     </div>
 
     <ng-template #favoriteItems>
-        <app-favorite-item
+        <app-search-item
             class="items"
             *ngFor="
                 let item of favoriteVideoItems
@@ -16,6 +16,6 @@
                 trackBy: trackByFn
             "
             [item]="item"
-        ></app-favorite-item>
+        ></app-search-item>
     </ng-template>
 </ng-container>
